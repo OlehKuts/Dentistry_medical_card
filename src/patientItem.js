@@ -75,7 +75,7 @@ export const PatientItem = ({
     anamnesisVitaeContent, statusPraesensContent, statusLocalisContent, diagnosis, operationName,
     operationContent, drugName1, drugName2, drugName3, drugName4, drugName5,
     appointment, appointment2, appointment3, recommendations, shortStatusContent, 
-    secondOperation, otherExaminations, examinations
+    secondOperation, otherExaminations, examinations, operationDataSend
    } =
     patient;
   const [currentDay, setCurrentDay] = useState("");
@@ -420,7 +420,6 @@ export const PatientItem = ({
     setEditType(editTypeList[0].value);
   };
   const [editedValue, setEditedValue] = useState("");
-  const operationDataSend = true;
   const [currentStreets, setCurrentStreets] = useState(townList[0].streets);
   const getStreets = (cityList, currentCity) => {
     const city = cityList.find((item) => item.value === currentCity);

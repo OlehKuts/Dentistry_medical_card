@@ -593,7 +593,7 @@ exceedReminder(patients.length);
       getActivity(cutDoctors, Number(requestMonth), Number(requestYear))
     );
   };
- 
+ console.log(cur.operationDataSend, cur.planned)
   return (
     <>
       <div className="navigation">

@@ -305,6 +305,9 @@ select {
   page-break-after: always !important;
   font-size: 18px !important;
 }
+#newDiary {
+  margin: 30px 0px 10px 0px !important;
+}
 .patientCard {
   height: 1200px;
   width: 1100px;
