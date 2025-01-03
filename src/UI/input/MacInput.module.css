@@ -1,0 +1,10 @@
+.macInput {
+  padding: 5px 15px;
+  font-size: 14px;
+  border: 1px solid cornflowerblue;
+  margin: 5px;
+  border-radius: 4px;
+}
+.macInput:hover {
+  background-color: whitesmoke;
+}
