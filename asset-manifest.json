@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/Dentistry_medical_card/static/css/main.e8c4a3eb.css",
-    "main.js": "/Dentistry_medical_card/static/js/main.7dc5546e.js",
+    "main.css": "/Dentistry_medical_card/static/css/main.c8037cd3.css",
+    "main.js": "/Dentistry_medical_card/static/js/main.031953fc.js",
     "static/media/signetKuchmiy.jpg": "/Dentistry_medical_card/static/media/signetKuchmiy.a750f637331c83d3e67f.jpg",
     "static/media/signetPikh.jpg": "/Dentistry_medical_card/static/media/signetPikh.2439f4a749f40323ac2c.jpg",
     "index.html": "/Dentistry_medical_card/index.html",
-    "main.e8c4a3eb.css.map": "/Dentistry_medical_card/static/css/main.e8c4a3eb.css.map",
-    "main.7dc5546e.js.map": "/Dentistry_medical_card/static/js/main.7dc5546e.js.map"
+    "main.c8037cd3.css.map": "/Dentistry_medical_card/static/css/main.c8037cd3.css.map",
+    "main.031953fc.js.map": "/Dentistry_medical_card/static/js/main.031953fc.js.map"
   },
   "entrypoints": [
-    "static/css/main.e8c4a3eb.css",
-    "static/js/main.7dc5546e.js"
+    "static/css/main.c8037cd3.css",
+    "static/js/main.031953fc.js"
   ]
 }
