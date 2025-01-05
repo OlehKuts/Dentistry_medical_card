@@ -21,8 +21,6 @@ import {
   drugName5List,
   pliersList,
   elevatorList,
-  surgeons,
-  assistants,
   areaList,
   sideList,
   injuryReasonList,
@@ -112,6 +110,12 @@ export const PatientForm = ({ onAdd, params }) => {
       return { name: item, value: "" };
     } else return { name: item, value: item };
   });
+  const surgeons = [{ name: "Хірург", value: "" }].concat(
+    doctors.slice(1)
+  );
+  const assistants = [{ name: "Асистент", value: "" }].concat(
+    doctors.slice(1)
+  );
   const onCancel = () => {
     setShowForm(false);
     setShowAddPatients(true);

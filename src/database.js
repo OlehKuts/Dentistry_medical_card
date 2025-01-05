@@ -117,12 +117,6 @@ export const elevatorList = [
   { name: "прямий", value: "прямого елеватора" },
   { name: "кутовий", value: "кутового елеватора" },
 ];
-export const surgeons = [{ name: "Хірург", value: "" }].concat(
-  doctors.slice(1)
-);
-export const assistants = [{ name: "Асистент", value: "" }].concat(
-  doctors.slice(1)
-);
 export const anesthetistList = [
   { name: "Анестезіолог", value: "" },
   { name: "відсутній", value: " - " },
