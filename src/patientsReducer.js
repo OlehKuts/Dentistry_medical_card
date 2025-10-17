@@ -386,7 +386,6 @@ export const patientsReducer = (patients, action) => {
               bloodTest: [
                 hb,
                 er,
-                colorIndexCounter(hb, er),
                 leu, pal, segm, eoz, limf,
                 monoCounter(pal, segm, eoz, limf),
                 rse,

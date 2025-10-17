@@ -98,6 +98,9 @@ export const patientEditor = (type, patient, value) => {
       case "examinations":
         newPatient.examinations = value;
         break;
+       case "anestesiaTypeModified":
+        newPatient.anestesiaTypeModified = value;
+        break;
     default:
       newPatient = patient;
   }

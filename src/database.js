@@ -472,6 +472,7 @@ export const editTypeList = [
   { value: "operationDate", name: "дата операції" },
   { value: "operationTime", name: "час операції" },
   { value: "operationContent", name: "протокол операції" },
+  { value: "anestesiaTypeModified", name: "вид знеболення" },
   { value: "drugName1", name: "антибіотик" },
   { value: "drugName2", name: "протизапальний" },
   { value: "drugName3", name: "пробіотик" },
@@ -489,7 +490,6 @@ export const editTypeList = [
 export const bloodTestExponents = [
   "Hb, г/л",
   "Er, T/л	",
-  "КП",
   "Leu, Г/л",
   "пал, %",
   "сегм, %",

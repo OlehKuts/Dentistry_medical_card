@@ -405,6 +405,9 @@ export const PatientItem = ({
         case "examinations":
           result = examinations;
           break;
+          case "anestesiaTypeModified":
+          result = patient.anestesiaTypeModified;
+          break;
       default:
         throw new Error();
     }
