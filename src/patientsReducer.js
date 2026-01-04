@@ -10,7 +10,6 @@ import { operationNameCreator } from "./functions/operationNameCreator";
 import { operationContentCreator } from "./functions/operationContentCreator";
 import { lastTimeChecker } from "./functions/lastTimeChecker";
 import { recommendationsCreator } from "./functions/recommendationsCreator";
-import { colorIndexCounter } from "./functions/colorIndexCounter";
 import { monoCounter } from "./functions/monoCounter";
 import { diaryListCreator } from "./functions/diaryListCreator";
 import { respiratoryRateCounter } from "./functions/respiratoryRateCounter";
@@ -76,7 +75,7 @@ export const patientsReducer = (patients, action) => {
     pal, segm, eoz, limf, rse, uColor, uEp1, uOpacity, uWeight, uPh, uProtein,
     uLeu, uEp2, uOther, restMaterial, finalDiagnosis, editType, editedValue,
     patientId, day, glucose, enterobioz, dung, bloodGroup, rezusFactor,
-    analyseHiddenFields, wasViolation, birthDate, residence, histologyConclusion, histologyNumber
+    analyseHiddenFields, wasViolation, birthDate, residence, histologyConclusion, histologyNumber, planned
    } = action;
   switch (action.type) {
     case PATIENTS_ACTIONS.IMPORT:
@@ -92,7 +91,7 @@ export const patientsReducer = (patients, action) => {
           childbirth, birthWeight, condition,
           examinations: initialExaminations, weight,
           age, crownDestruction, inflammationArea,
-          planned: plannedChecker(disease),
+          planned,
           drugs: [
             treatmentCreator(drugName1, age, weight),
             treatmentCreator(drugName2, age, weight),
@@ -379,7 +378,6 @@ export const patientsReducer = (patients, action) => {
                 lastDay, lastMonth, lastYear, patient
               ),
               hb, er,
-              colorIndex: colorIndexCounter(hb, er),
               leu, pal, segm, eoz, limf,
               mono: monoCounter(pal, segm, eoz, limf),
               rse,

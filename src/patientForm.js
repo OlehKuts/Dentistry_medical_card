@@ -71,6 +71,7 @@ import {
   overCompleteFormList,
   overCompleteAmountList
 } from "./database";
+import { plannedChecker } from "./functions/plannedChecker";
 
 export const PatientForm = ({ onAdd, params }) => {
   const [showForm, setShowForm] = useState(false);
@@ -271,6 +272,10 @@ export const PatientForm = ({ onAdd, params }) => {
   const onOperationFreeChange = () => {
     setOperationFree(!operationFree);
   };
+  const [planned, setPlanned] = useState(false);
+  const onPlannedChange = () => {
+    if(plannedChecker(disease)) return;
+    setPlanned(!planned)}
   const [abscessType, setAbscessType] = useState(abscessTypeList[0].value);
   const [abscessArea, setAbscessArea] = useState(abscessAreaList[0].value);
   const [abscessSide, setAbscessSide] = useState(sideList[0].value);
@@ -669,7 +674,8 @@ export const PatientForm = ({ onAdd, params }) => {
       overCompleteLocation2,
       overCompleteXRay,
       overCompleteAmount,
-      operationFree
+      operationFree,
+      planned
     );
     setDisease(diseaseList[0].value);
     setStartDay(initDate.getDate());
@@ -806,6 +812,7 @@ export const PatientForm = ({ onAdd, params }) => {
     );
     setFractureTooth2bText(fractureLowerTeethInLine2 === "between" ? `та` : ``);
   }, [fractureLowerTeethInLine2]);
+   useEffect(() => setPlanned(plannedChecker(disease)), [disease])
   return (
     <div className="form">
       {showAddPatients && (
@@ -2284,6 +2291,14 @@ export const PatientForm = ({ onAdd, params }) => {
                     value={operationFree}
                     onChange={onOperationFreeChange}
                     checked={operationFree}
+                  />
+                  <div className="label">Планова операція</div>
+                  <input
+                    className="checkbox"
+                    type="checkbox"
+                    value={planned}
+                    onChange={onPlannedChange}
+                    checked={planned}
                   />
                 </div>
               </>

@@ -1,4 +1,4 @@
-import React, { useEffect, useReducer, useState, useRef } from "react";
+import { useEffect, useReducer, useState, useRef } from "react";
 import "./styles.css";
 import { PatientForm } from "./patientForm";
 import { PatientCard } from "./PatientCard";
@@ -224,7 +224,8 @@ export const Main = () => {
     overCompleteLocation2,
     overCompleteXRay,
     overCompleteAmount,
-    operationFree
+    operationFree,
+    planned
   ) => {
     dispatch({
       type: PATIENTS_ACTIONS.ADD,
@@ -364,6 +365,7 @@ export const Main = () => {
       overCompleteXRay,
       overCompleteAmount,
       operationFree,
+      planned
     });
     listClick();
   };
@@ -807,9 +809,9 @@ exceedReminder(patients.length);
         {showMenuPart[2] && cur !== undefined && (
           <>
             {cur !== undefined && <PatientCard current={cur} />}
-            <Review current={cur} params={currentParams} />
-            <Epicrisis current={cur} params={currentParams} />
-            <Extract current={cur} params={currentParams} />
+            <Review current={cur} params={currentParams} onEditAdd={onEditAdd} />
+            <Epicrisis current={cur} params={currentParams} onEditAdd={onEditAdd}/>
+            <Extract current={cur} params={currentParams} onEditAdd={onEditAdd}/>
             <div id="operationRegister">
               <OperationRegister current={cur} />
             </div>

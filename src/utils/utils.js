@@ -141,3 +141,9 @@ export const minutesToHoursConverter = (minutes) => {
     numberedMins < 60 ? `${mins} хв.` : `${hours} год. ${mins} хв.`;
   return result;
 };
+
+export const defineTextareaSize = (stringLength) => {
+  const cols = (stringLength > 150) ? 160 : stringLength + 10;
+  const rows = (stringLength > 150) ? (stringLength / 150).toFixed() : 1;
+  return {cols, rows}
+}

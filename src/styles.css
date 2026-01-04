@@ -34,6 +34,12 @@ body {
   height: 70px;
   z-index: 1;
 }
+/* .content {
+  cursor: pointer;
+} */
+.editTextarea {
+  margin-left: 20px;
+}
 .navigation ul li span {
   position: relative;
   display: flex;

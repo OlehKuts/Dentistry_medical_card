@@ -1,53 +1,6 @@
 export const patientEditor = (type, patient, value) => {
   let newPatient = patient;
   switch (type) {
-    case "name":
-      newPatient.name = value;
-      break;
-    case "cardNumber":
-      newPatient.cardNumber = value;
-      break;
-    case "reviewDate":
-      newPatient.reviewDate = value;
-      break;
-    case "doctor":
-      newPatient.doctor = value;
-      break;
-    case "complaintsContent":
-      newPatient.complaintsContent = value;
-      break;
-    case "anamnesisMorbiContent":
-      newPatient.anamnesisMorbiContent = value;
-      break;
-    case "anamnesisVitaeContent":
-      newPatient.anamnesisVitaeContent = value;
-      break;
-    case "statusPraesensContent":
-      newPatient.statusPraesensContent = value;
-      break;
-    case "statusLocalisContent":
-      newPatient.statusLocalisContent = value;
-      break;
-    case "diagnosis":
-      newPatient.diagnosis = value;
-      newPatient.diagnosisCap = value[0].toUpperCase() + value.slice(1);
-      break;
-    case "protocolNumber":
-      newPatient.protocolNumber = value;
-      break;
-    case "operationName":
-      newPatient.operationName = value;
-      newPatient.operationNameCap = value[0].toUpperCase() + value.slice(1);
-      break;
-    case "operationDate":
-      newPatient.operationDate = value;
-      break;
-    case "operationTime":
-      newPatient.operationTime = value;
-      break;
-    case "operationContent":
-      newPatient.operationContent = value;
-      break;
     case "drugName1":
       newPatient.drugName1 = value;
       newPatient.drugs.splice(0, 1, value); //here
@@ -80,29 +33,8 @@ export const patientEditor = (type, patient, value) => {
       newPatient.appointment3 = value;
       newPatient.drugs.splice(7, 1, value);
       break;
-    case "recommendations":
-      newPatient.recommendations = value;
-      break;
-    case "shortStatusContent":
-      newPatient.shortStatusContent = value;
-      break;
-    case "secondOperation":
-      newPatient.secondOperation = value;
-      break;
-    case "finalDiagnosis":
-      newPatient.finalDiagnosis = value;
-      break;
-    case "otherExaminations":
-      newPatient.otherExaminations = value;
-      break;
-      case "examinations":
-        newPatient.examinations = value;
-        break;
-       case "anestesiaTypeModified":
-        newPatient.anestesiaTypeModified = value;
-        break;
     default:
-      newPatient = patient;
+      newPatient[type] = value;
   }
   return newPatient;
 };

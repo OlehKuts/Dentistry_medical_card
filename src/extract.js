@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./styles.css";
 import { Block } from "./block";
+import { SimpleBlock } from "./SimpleBlock";
 import { Text } from "./text";
 import { BlockList } from "./blockList";
 import { Table } from "./table";
@@ -10,8 +11,8 @@ import { bloodTestChecker } from "./functions/bloodTestChecker";
 import signKuchmiy from "./images/signetKuchmiy.jpg";
 import signPikh from "./images/signetPikh.jpg";
 
-export const Extract = ({ current, params }) => {
-  const {doctor, drugs, toothFormulaPost, toothFormula, bloodTest, analyseHiddenFields,
+export const Extract = ({ current, params, onEditAdd }) => {
+  const {_id, doctor, drugs, toothFormulaPost, toothFormula, bloodTest, analyseHiddenFields,
     extractDataSend, cardNumber, birthDate, residence, reviewDate, dischargeDate,fullAdress,
     complaintsContent, anamnesisMorbiContent, statusLocalisContent, finalDiagnosis, diagnosis,
     operationDate, operationFree, operationName, secondOperation, anestesiaTypeModified,
@@ -94,33 +95,39 @@ export const Extract = ({ current, params }) => {
           </div>
 
           <div className="flexi headers">
-            <Block header="ВИПИСКА" content={""} size="28px" />
+            <SimpleBlock header="ВИПИСКА" content={""} size="28px" />
           </div>
           <div className="flexi headers">
-            <Block
+            <SimpleBlock
               header={`${params.medicalCard} №:`}
               content={cardNumber}
             />
           </div>
-          <Block header="П.І.Б хворого: " content={current.name} />
+          <SimpleBlock header="П.І.Б хворого: " content={current.name} />
           <Block
             header="Дата народження: "
             content={`${birthDate} р.н.`}
+            onEditAdd={onEditAdd}
+            patientId={_id}
+            editType="birthDate"
           />
           <Block
             header="Адреса проживання: "
             content={residence || fullAdress}
+            onEditAdd={onEditAdd}
+            patientId={_id}
+            editType="residence"
           />
-          <Block
+          <SimpleBlock
             header=""
             content={`${params.treatmentLocation} з ${reviewDate} по ${dischargeDate}.`}
           />
-          <Block header="Скарги:" content={complaintsContent} />
-          <Block
+          <SimpleBlock header="Скарги:" content={complaintsContent} />
+          <SimpleBlock
             header="Анамнез захворювання:"
             content={anamnesisMorbiContent}
           />
-          <Block header="Об'єктивно:" content={statusLocalisContent} />
+          <SimpleBlock header="Об'єктивно:" content={statusLocalisContent} />
           {disease === "caries" && (
             <div className="flexi headers">
               <FormulaTable
@@ -134,15 +141,18 @@ export const Extract = ({ current, params }) => {
           <Block
             header="Діагноз:"
             content={finalDiagnosis || diagnosis}
+            onEditAdd={onEditAdd}
+            patientId={_id}
+            editType="diagnosis"
           />
           {!operationFree && (
             <>
-              <Block
+              <SimpleBlock
                 header=""
                 content={`${operationDate} під ${anestesiaTypeModified} знеболенням проведено оперативне втручання - ${operationName} Післяопераційний період без ускладнень.`}
               />
 
-              <Block
+              <SimpleBlock
                 header=""
                 content={
                   `${secondOperation}` === undefined
@@ -153,15 +163,18 @@ export const Extract = ({ current, params }) => {
               <Block
                 header="Післяопераційний діагноз:"
                 content={finalDiagnosis || diagnosis}
+                onEditAdd={onEditAdd}
+              patientId={_id}
+              editType="finalDiagnosis"
               />
             </>
           )}
           {filteredDrugs.length === 0 ? (
-            <Block header="Медикаментозне лікування відсутнє." content="" />
+            <SimpleBlock header="Медикаментозне лікування відсутнє." content="" />
           ) : (
             <BlockList header="Медикаментозне лікування:" content={filteredDrugs} />
           )}
-          <Block
+          <SimpleBlock
             header=""
             content={` ${
               wasViolation
@@ -169,15 +182,18 @@ export const Extract = ({ current, params }) => {
                 : "Дитина виписана в задовільному загальному стані. "
             } Виписка видана батькам на руки. В контакті з інфекційними хворими не перебувала.`}
           />
-          <Block header="Рекомендації:" content={recommendations} />
+          <Block header="Рекомендації:" content={recommendations}
+           onEditAdd={onEditAdd}
+              patientId={_id}
+              editType="recommendations"/>
 
           <div className="flexi headers">
-            <Block header="ДАНІ ОБСТЕЖЕНЬ" content="" />
+            <SimpleBlock header="ДАНІ ОБСТЕЖЕНЬ" content="" />
           </div>
           {!bloodTestHidden && (
             <>
               <div className="flexi headers">
-                <Block header="ЗАГАЛЬНИЙ АНАЛІЗ КРОВІ" content="" />
+                <SimpleBlock header="ЗАГАЛЬНИЙ АНАЛІЗ КРОВІ" content="" />
               </div>
               <div className="flexi headers">
                 <Table
@@ -191,7 +207,7 @@ export const Extract = ({ current, params }) => {
           {!urineHidden && (
             <>
               <div className="flexi headers">
-                <Block header="ЗАГАЛЬНИЙ АНАЛІЗ СЕЧІ" content="" />
+                <SimpleBlock header="ЗАГАЛЬНИЙ АНАЛІЗ СЕЧІ" content="" />
               </div>
               <div className="flexi headers">
                 <Table
@@ -202,7 +218,7 @@ export const Extract = ({ current, params }) => {
             </>
           )}
           {!glucoseHidden && (
-            <Block header="Глюкоза крові:" content={`${glucose}.`} />
+            <SimpleBlock header="Глюкоза крові:" content={`${glucose}.`} />
           )}
           <div className="block">
             {enterobioz !== `не визначався` && (
@@ -230,24 +246,23 @@ export const Extract = ({ current, params }) => {
               <span id="content">{rezusFactor}</span>
             </div>
           )}
-          {otherExaminations && (
-            <div className="block">
-              <Text fontWeight="bold">Інші обстеження:</Text>
-              {""}
-              <span id="content"> {otherExaminations}</span>
-            </div>
-          )}
-          {histologyConclusion && (
-            <div className="block">
-              <Text fontWeight="bold">Висновок гістологічного дослідження №{histologyNumber}:</Text>
-              {""}
-              <span id="content"> {histologyConclusion}</span>
-            </div>
-          )}
+           {otherExaminations ? (
+                       <Block header="Інші обстеження:" content={otherExaminations}
+                    onEditAdd={onEditAdd}
+                      patientId={_id}
+                      editType="otherExaminations" />
+                    ) : null}
+          
+                  {histologyConclusion ? 
+                         <Block header={`Висновок гістологічного дослідження №${histologyNumber}`} content={histologyConclusion}
+                      onEditAdd={onEditAdd}
+                      patientId={_id}
+                      editType="histologyConclusion" />
+                    : null}
           <div className="flexEnd headers">
             {!showSignet && (
               <div className="lastLine">
-                <Block header="" content={`Лікар ________ ${doctor}`} />
+                <SimpleBlock header="" content={`Лікар ________ ${doctor}`} />
               </div>
             )}
             {showSignet && (
