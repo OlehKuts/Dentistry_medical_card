@@ -63,10 +63,17 @@ export const Epicrisis = ({ current, params, onEditAdd }) => {
             header=""
             content={`${params.treatmentLocation} з ${reviewDate} по ${dischargeDate}.`}
           />
-          <SimpleBlock header="Скарги:" content={complaintsContent} />
-          <SimpleBlock
+          <Block header="Скарги:" content={complaintsContent}
+            onEditAdd={onEditAdd}
+            patientId={_id}
+            editType="complaintsContent"
+           />
+          <Block
             header="Анамнез захворювання:"
             content={anamnesisMorbiContent}
+            onEditAdd={onEditAdd}
+            patientId={_id}
+            editType="anamnesisMorbiContent"
           />
           <SimpleBlock header="Об'єктивно:" content={statusLocalisContent} />
           {disease === "caries" && (
@@ -84,7 +91,7 @@ export const Epicrisis = ({ current, params, onEditAdd }) => {
             content={finalDiagnosis || diagnosis}
             onEditAdd={onEditAdd}
             patientId={_id}
-            editType="diagnosis"
+            editType="finalDiagnosis"
           />
           {!operationFree && (
             <>
