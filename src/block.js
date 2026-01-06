@@ -16,7 +16,7 @@ export const Block = ({ header, content, size = "18px", patientId, editType, onE
     }
     return (
           <div style={{cursor: editType ? "pointer": "auto"}}className="block" onClick={() => {if(!editType) return;
-           setShowTextarea(true)}}>
+           setShowTextarea(true)}} {...props}>
     <Text size={size} fontWeight="bold" {...props}>
       {header}
     </Text>

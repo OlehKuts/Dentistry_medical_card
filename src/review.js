@@ -210,9 +210,10 @@ export const Review = ({ current, params, onEditAdd }) => {
               </div>
               <div className="flexi headers">
                 <  Block onEditAdd={onEditAdd} patientId={_id}
-                  header={stringCapitalizer(operationName)}
-                  content={""}
+                  header={""}
+                  content={operationName}
                   editType="operationName"
+                  style={{fontWeight: "bold"}}
                 />
               </div>
               <div className="flexi protocolContent headers">
@@ -237,7 +238,7 @@ export const Review = ({ current, params, onEditAdd }) => {
                 {" "}
                 <  Block onEditAdd={onEditAdd} patientId={_id}
                   header="Післяопераційний діагноз:"
-                  content={finalDiagnosis}
+                  content={diagnosis}
                   editType="finalDiagnosis"
                 />{" "}
               </div>

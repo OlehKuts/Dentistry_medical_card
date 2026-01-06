@@ -97,7 +97,9 @@ export const Epicrisis = ({ current, params, onEditAdd }) => {
             <>
               <SimpleBlock
                 header=""
-                content={`${operationDate} під ${anestesiaTypeModified} знеболенням проведено оперативне втручання - ${operationName} Післяопераційний період без ускладнень.`}
+                content={`${operationDate} під ${anestesiaTypeModified} 
+                знеболенням проведено оперативне втручання - 
+                ${operationName.toLowerCase()}. Післяопераційний період без ускладнень.`}
               />
 
               <SimpleBlock
