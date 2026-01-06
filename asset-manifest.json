@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/Dentistry_medical_card/static/css/main.2468890e.css",
-    "main.js": "/Dentistry_medical_card/static/js/main.56ac028d.js",
+    "main.js": "/Dentistry_medical_card/static/js/main.99e3c990.js",
     "static/media/signetKuchmiy.jpg": "/Dentistry_medical_card/static/media/signetKuchmiy.a750f637331c83d3e67f.jpg",
     "static/media/signetPikh.jpg": "/Dentistry_medical_card/static/media/signetPikh.2439f4a749f40323ac2c.jpg",
     "index.html": "/Dentistry_medical_card/index.html",
     "main.2468890e.css.map": "/Dentistry_medical_card/static/css/main.2468890e.css.map",
-    "main.56ac028d.js.map": "/Dentistry_medical_card/static/js/main.56ac028d.js.map"
+    "main.99e3c990.js.map": "/Dentistry_medical_card/static/js/main.99e3c990.js.map"
   },
   "entrypoints": [
     "static/css/main.2468890e.css",
-    "static/js/main.56ac028d.js"
+    "static/js/main.99e3c990.js"
   ]
 }
