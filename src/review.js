@@ -211,7 +211,7 @@ export const Review = ({ current, params, onEditAdd }) => {
               <div className="flexi headers">
                 <  Block onEditAdd={onEditAdd} patientId={_id}
                   header={""}
-                  content={operationName}
+                  content={`${operationName[0].toUpperCase()}${operationName.slice(1)}`}
                   editType="operationName"
                   style={{fontWeight: "bold"}}
                 />

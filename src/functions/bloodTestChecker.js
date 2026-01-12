@@ -9,12 +9,9 @@ export const bloodTestChecker = (test = []) => {
         current = i < 3.7 ? true : false;
         break;
       case 2:
-        current = i > 1.15 || i < 0.85 ? true : false;
-        break;
-      case 3:
         current = i > 9 || i < 4 ? true : false;
         break;
-      case 9:
+      case 8:
         current = i > 15 ? true : false;
         break;
       default:
