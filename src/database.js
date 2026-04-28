@@ -35,7 +35,6 @@ export const doctors = [
   { name: "ЛІКАР_1", value: "ЛІКАР_1" },
   { name: "ЛІКАР_2", value: "ЛІКАР_2" },
   { name: "ЛІКАР_3", value: "ЛІКАР_3" },
-
 ];
 // export const otolaryngologists = doctors.slice(-4).map((item) => item.name);
 export const start2List = ["день", "тиждень", "місяць", "рік"];
@@ -509,7 +508,8 @@ export const urineTestExponents = [
   "Перехідний епіт.",
   "Інше",
 ];
-export const initialExaminations = 'Загальний аналіз крові,Загальний аналіз сечі,Глюкоза крові';
+export const initialExaminations =
+  "Загальний аналіз крові,Загальний аналіз сечі,Глюкоза крові";
 export const baseIndications = [
   "Згоду батьків до операції отримано.",
   "Протипоказання до операції відсутні.",
@@ -2336,38 +2336,38 @@ export const usefulLinks = [
     title: "Перевірити лікарняний",
     link: "https://portal.pfu.gov.ua/sidebar/Templates/IncapListsSearch",
     iconName: "trueAnswer",
-    color: "green"
+    color: "green",
   },
   {
     title: "Код-помічник",
-    link: "https://olehkuts.github.io/code_helper/",
+    link: "https://olehkuts.github.io/Medical_assistant/#/codeHelper",
     iconName: "helper",
-    color: "black"
+    color: "black",
   },
   {
     title: "Довідка до школи",
-    link: "https://OlehKuts.github.io./medical_certification",
+    link: "https://olehkuts.github.io/Medical_assistant/#/statement",
     iconName: "document",
-    color: "sienna"
+    color: "sienna",
   },
   {
     title: "Направлення на аналізи",
-    link: "https://OlehKuts.github.io./analyses_directions",
+    link: "https://olehkuts.github.io/Medical_assistant/#/",
     iconName: "examination",
-    color: "coral"
+    color: "coral",
   },
   {
     title: "Операційний список",
-    link: "https://OlehKuts.github.io./operational_list",
+    link: "https://olehkuts.github.io/Medical_assistant/#/operationalList",
     iconName: "list",
-    color: "black"
+    color: "black",
   },
   {
     title: "Календар для операцій",
     link: "https://OlehKuts.github.io./upgraded_calendar",
     iconName: "calendar",
-    color: "royalblue"
-  }
+    color: "royalblue",
+  },
 ];
 
 export const diaryListTemplate = [
