@@ -756,7 +756,7 @@ export const Main = () => {
                   <OperationRegister current={cur} />
                 </div>
                 {cur !== undefined && !cur.usedNewDiary
-                  ? cur.diaryList.map((item, idx) => (
+                  ? cur?.diaryList.map((item, idx) => (
                       <Diary
                         key={idx}
                         current={item}
