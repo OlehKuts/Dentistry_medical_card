@@ -755,7 +755,7 @@ export const Main = () => {
                 <div id="operationRegister">
                   <OperationRegister current={cur} />
                 </div>
-                {cur !== undefined && !cur.usedNewDiary
+                {/* {cur !== undefined && !cur.usedNewDiary
                   ? cur?.diaryList.map((item, idx) => (
                       <Diary
                         key={idx}
@@ -782,7 +782,7 @@ export const Main = () => {
                       />
                     ))}{" "}
                   </>
-                ) : null}
+                ) : null} */}
               </>
             }
           />
