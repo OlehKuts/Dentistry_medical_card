@@ -576,6 +576,7 @@ export const Main = () => {
       getActivity(cutDoctors, Number(requestMonth), Number(requestYear)),
     );
   };
+  console.log(cur.diaryList);
   return (
     <>
       <AppNavbar currentPatientName={cur?.name} />
