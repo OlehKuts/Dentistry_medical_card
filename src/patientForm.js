@@ -69,11 +69,13 @@ import {
   overCompleteLocationList,
   xRayList2,
   overCompleteFormList,
-  overCompleteAmountList
+  overCompleteAmountList,
 } from "./database";
 import { plannedChecker } from "./functions/plannedChecker";
+import { useNavigate } from "react-router";
 
 export const PatientForm = ({ onAdd, params }) => {
+  const navigate = useNavigate();
   const [showForm, setShowForm] = useState(false);
   const [showAddPatients, setShowAddPatients] = useState(true);
   const [showPerioLines, setShowPerioLines] = useState(false);
@@ -84,12 +86,10 @@ export const PatientForm = ({ onAdd, params }) => {
   const [showNeoplasmLines, setShowNeoplasmLines] = useState(false);
   const [showCystLines, setShowCystLines] = useState(false);
   const [showRetentionLines, setShowRetentionLines] = useState(false);
-  const [showFractureLowerJawLines, setShowFractureLowerJawLines] = useState(
-    false
-  );
-  const [showFractureLowerJawLine2, setShowFractureLowerJawLine2] = useState(
-    false
-  );
+  const [showFractureLowerJawLines, setShowFractureLowerJawLines] =
+    useState(false);
+  const [showFractureLowerJawLine2, setShowFractureLowerJawLine2] =
+    useState(false);
   const [showDlLines, setShowDlLines] = useState(false);
   const [showDlLine2, setShowDlLine2] = useState(false);
   const [showOverCompleteLines, setShowOverCompleteLines] = useState(false);
@@ -111,12 +111,8 @@ export const PatientForm = ({ onAdd, params }) => {
       return { name: item, value: "" };
     } else return { name: item, value: item };
   });
-  const surgeons = [{ name: "Хірург", value: "" }].concat(
-    doctors.slice(1)
-  );
-  const assistants = [{ name: "Асистент", value: "" }].concat(
-    doctors.slice(1)
-  );
+  const surgeons = [{ name: "Хірург", value: "" }].concat(doctors.slice(1));
+  const assistants = [{ name: "Асистент", value: "" }].concat(doctors.slice(1));
   const onCancel = () => {
     setShowForm(false);
     setShowAddPatients(true);
@@ -209,7 +205,7 @@ export const PatientForm = ({ onAdd, params }) => {
 
   const [age, setAge] = useState(null);
   const [crownDestruction, setCrownDestruction] = useState(
-    crownDestructionList[0].value
+    crownDestructionList[0].value,
   );
   const [inflammationArea, setInflammationArea] = useState("");
   const [drugName1, setDrugName1] = useState(drugName1List[0].value);
@@ -243,12 +239,12 @@ export const PatientForm = ({ onAdd, params }) => {
   const [woundLedges, setWoundLedges] = useState(woundLedgesList[0].value);
   const onWoundLedgesChange = (event) => setWoundLedges(event.target.value);
   const [woundBleeding, setWoundBleeding] = useState(
-    woundBleedingList[0].value
+    woundBleedingList[0].value,
   );
   const [woundAliens, setWoundAliens] = useState(woundAliensList[0].value);
   const [sutureType, setSutureType] = useState(sutureTypeList[0].value);
   const [sutureMaterial, setSutureMaterial] = useState(
-    sutureMaterialList[0].value
+    sutureMaterialList[0].value,
   );
   const [sutureSize, setSutureSize] = useState(sutureSizeList[0].value);
   const [perioTeeth, setPerioTeeth] = useState("");
@@ -274,19 +270,20 @@ export const PatientForm = ({ onAdd, params }) => {
   };
   const [planned, setPlanned] = useState(false);
   const onPlannedChange = () => {
-    if(plannedChecker(disease)) return;
-    setPlanned(!planned)}
+    if (plannedChecker(disease)) return;
+    setPlanned(!planned);
+  };
   const [abscessType, setAbscessType] = useState(abscessTypeList[0].value);
   const [abscessArea, setAbscessArea] = useState(abscessAreaList[0].value);
   const [abscessSide, setAbscessSide] = useState(sideList[0].value);
   const [abscessReason, setAbscessReason] = useState(
-    abscessReasonList[0].value
+    abscessReasonList[0].value,
   );
   const [abscessTooth, setAbscessTooth] = useState("");
   const [cystType, setCystType] = useState(cystTypeList[0].value);
   const [cystTooth, setCystTooth] = useState(toothList[0]);
   const cystDiameterList = numArrayCreator(5, 40).map((d) =>
-    (d / 10).toFixed(1)
+    (d / 10).toFixed(1),
   );
   const [cystDiameter, setCystDiameter] = useState(0.5);
   const [rootSealed, setRootSealed] = useState(rootSealedList[0].value);
@@ -297,31 +294,31 @@ export const PatientForm = ({ onAdd, params }) => {
   const [neoplasmType, setNeoplasmType] = useState(neoplasmTypeList[0].value);
   const [growthRate, setGrowthRate] = useState(growthRateList[0].value);
   const neoplasmDiameterList = numArrayCreator(1, 40).map((d) =>
-    (d / 10).toFixed(1)
+    (d / 10).toFixed(1),
   );
   const [neoplasmDiameter, setNeoplasmDiameter] = useState(
-    neoplasmDiameterList[0]
+    neoplasmDiameterList[0],
   );
   const [neoplasmForm, setNeoplasmForm] = useState(neoplasmFormList[0].value);
   const [neoplasmBorders, setNeoplasmBorders] = useState(
-    neoplasmBorderList[0].value
+    neoplasmBorderList[0].value,
   );
   const [neoplasmMovability, setNeoplasmMovability] = useState(
-    neoplasmMovabilityList[0].value
+    neoplasmMovabilityList[0].value,
   );
   const [neoplasmPoignancy, setNeoplasmPoignancy] = useState(
-    neoplasmPoignancyList[0].value
+    neoplasmPoignancyList[0].value,
   );
   const [neoplasmConsistance, setNeoplasmConsistance] = useState(
-    neoplasmConsistanceList[0].value
+    neoplasmConsistanceList[0].value,
   );
   const [neoplasmArea, setNeoplasmArea] = useState(areaList[0].value);
   const [neoplasmSide, setNeoplasmSide] = useState(sideList[0].value);
   const [neoplasmSurface, setNeoplasmSurface] = useState(
-    neoplasmSurfaceList[0].value
+    neoplasmSurfaceList[0].value,
   );
   const [neoplasmColor, setNeoplasmColor] = useState(
-    neoplasmColorList[0].value
+    neoplasmColorList[0].value,
   );
   const [neoplasmAboveSurface, setNeoplasmAboveSurface] = useState(false);
   const onNeoplasmAboveSurfaceChange = (e) => {
@@ -332,62 +329,62 @@ export const PatientForm = ({ onAdd, params }) => {
     setNeoplasmSurfaceAlter(e.target.value);
   };
   const [bilateralismLower, setBilateralismLower] = useState(
-    bilateralismList[0].value
+    bilateralismList[0].value,
   );
   const [fractureLowerArea1, setFractureLowerArea1] = useState(
-    fractureLowerAreaList[0].value
+    fractureLowerAreaList[0].value,
   );
   const [fractureLowerArea2, setFractureLowerArea2] = useState(
-    fractureLowerAreaList[0].value
+    fractureLowerAreaList[0].value,
   );
   const [fractureLowerSide1, setFractureLowerSide1] = useState(
-    sideList[0].value
+    sideList[0].value,
   );
   const [fractureLowerSide2, setFractureLowerSide2] = useState(
-    sideList[0].value
+    sideList[0].value,
   );
   const [fractureLowerBias2, setFractureLowerBias2] = useState(
-    fractureBiasList[0]
+    fractureBiasList[0],
   );
   const [fractureLowerBias1, setFractureLowerBias1] = useState(
-    fractureBiasList[0]
+    fractureBiasList[0],
   );
   const [fractureLowerDirection1, setFractureLowerDirection1] = useState(
-    fractureDirectionList[0].value
+    fractureDirectionList[0].value,
   );
   const [fractureLowerDirection2, setFractureLowerDirection2] = useState(
-    fractureDirectionList[0].value
+    fractureDirectionList[0].value,
   );
   const [fractureLowerTooth1a, setFractureLowerTooth1a] = useState(
-    fractureLowerTeethList[0].value
+    fractureLowerTeethList[0].value,
   );
   const [fractureLowerTooth2a, setFractureLowerTooth2a] = useState(
-    fractureLowerTeethList[0].value
+    fractureLowerTeethList[0].value,
   );
   const [fractureLowerTooth1b, setFractureLowerTooth1b] = useState(
-    fractureLowerTeethList[0].value
+    fractureLowerTeethList[0].value,
   );
   const [fractureLowerTooth2b, setFractureLowerTooth2b] = useState(
-    fractureLowerTeethList[0].value
+    fractureLowerTeethList[0].value,
   );
   const [fractureTooth1aText, setFractureTooth1aText] = useState("");
   const [fractureTooth1bText, setFractureTooth1bText] = useState("");
   const [fractureTooth2aText, setFractureTooth2aText] = useState("");
   const [fractureTooth2bText, setFractureTooth2bText] = useState("");
   const [fractureLowerTeethInLine1, setFractureLowerTeethInLine1] = useState(
-    teethInFractureLineList[0].value
+    teethInFractureLineList[0].value,
   );
   const onFractureLowerTeethInLine1Change = (e) => {
     setFractureLowerTeethInLine1(e.target.value);
   };
   const [fractureLowerTeethInLine2, setFractureLowerTeethInLine2] = useState(
-    teethInFractureLineList[0].value
+    teethInFractureLineList[0].value,
   );
   const [fractureLowerStep1, setFractureLowerStep1] = useState(
-    fractureStepList[0].value
+    fractureStepList[0].value,
   );
   const [fractureLowerStep2, setFractureLowerStep2] = useState(
-    fractureStepList[0].value
+    fractureStepList[0].value,
   );
   const [lowerJawSubmucous1, setLowerJawSubmucous1] = useState(false);
   const onLowerJawSubmucous1Change = () => {
@@ -400,7 +397,7 @@ export const PatientForm = ({ onAdd, params }) => {
   const [xRay, setXRay] = useState(xRayList[0]);
   const [continuity, setContinuity] = useState(continuityList[0].value);
   const [fractureOperationType, setFractureOperationType] = useState(
-    fractureOperationTypeList[0].value
+    fractureOperationTypeList[0].value,
   );
   const [dlType, setDlType] = useState(dlTypeList[0].value);
   const [dlAlveolusDestroyed, setDlAlveolusDestroyed] = useState(false);
@@ -408,7 +405,7 @@ export const PatientForm = ({ onAdd, params }) => {
     setDlAlveolusDestroyed(!dlAlveolusDestroyed);
   };
   const [dlOperationType, setDlOperationType] = useState(
-    dlOperationTypeList[0].value
+    dlOperationTypeList[0].value,
   );
   const [dlDirection, setDlDirection] = useState(dlDirectionList[0].value);
   const dlDistanceList = numArrayCreator(0, 10);
@@ -426,7 +423,7 @@ export const PatientForm = ({ onAdd, params }) => {
     setDlAlveolusDestroyed2(!dlAlveolusDestroyed2);
   };
   const [dlOperationType2, setDlOperationType2] = useState(
-    dlOperationTypeList[0].value
+    dlOperationTypeList[0].value,
   );
   const [dlDirection2, setDlDirection2] = useState(dlDirectionList[0].value);
   const [dlDistance2, setDlDistance2] = useState(dlDistanceList[0]);
@@ -444,20 +441,20 @@ export const PatientForm = ({ onAdd, params }) => {
   const [overCompleteTooth3, setOverCompleteTooth3] = useState(dlToothList[0]);
   const [overCompleteTooth4, setOverCompleteTooth4] = useState(dlToothList[0]);
   const [overCompleteLocation, setOverCompleteLocation] = useState(
-    overCompleteLocationList[0].value
+    overCompleteLocationList[0].value,
   );
   const [overCompleteForm, setOverCompleteForm] = useState(
-    overCompleteFormList[0].value
+    overCompleteFormList[0].value,
   );
   const [overCompleteLocation2, setOverCompleteLocation2] = useState(
-    overCompleteLocationList[0].value
+    overCompleteLocationList[0].value,
   );
   const [overCompleteForm2, setOverCompleteForm2] = useState(
-    overCompleteFormList[0].value
+    overCompleteFormList[0].value,
   );
   const [overCompleteXRay, setOverCompleteXRay] = useState(xRayList2[0].value);
   const [overCompleteAmount, setOverCompleteAmount] = useState(
-    Number(overCompleteAmountList[0].value)
+    Number(overCompleteAmountList[0].value),
   );
   const onSubmit = (e) => {
     e.preventDefault();
@@ -675,7 +672,7 @@ export const PatientForm = ({ onAdd, params }) => {
       overCompleteXRay,
       overCompleteAmount,
       operationFree,
-      planned
+      planned,
     );
     setDisease(diseaseList[0].value);
     setStartDay(initDate.getDate());
@@ -761,6 +758,7 @@ export const PatientForm = ({ onAdd, params }) => {
     setNeoplasmBorders(neoplasmBorderList[0].value);
     setNeoplasmAboveSurface(false);
     setNeoplasmSurfaceAlter(false);
+    navigate("./patientList");
   };
   const progressValue = useMemo(
     () =>
@@ -774,7 +772,7 @@ export const PatientForm = ({ onAdd, params }) => {
         surgeon,
         assistant,
         anesthetist,
-        operationTime
+        operationTime,
       ),
     [
       doctor,
@@ -786,8 +784,8 @@ export const PatientForm = ({ onAdd, params }) => {
       surgeon,
       assistant,
       anesthetist,
-      operationTime
-    ]
+      operationTime,
+    ],
   );
   useEffect(() => {
     setShowFractureLowerJawLine2(bilateralismLower ? true : false);
@@ -797,8 +795,8 @@ export const PatientForm = ({ onAdd, params }) => {
       fractureLowerTeethInLine1 === "between"
         ? `між`
         : fractureLowerTeethInLine1 === "through"
-        ? `через`
-        : ``
+          ? `через`
+          : ``,
     );
     setFractureTooth1bText(fractureLowerTeethInLine1 === "between" ? `та` : ``);
   }, [fractureLowerTeethInLine1]);
@@ -807,12 +805,12 @@ export const PatientForm = ({ onAdd, params }) => {
       fractureLowerTeethInLine2 === "between"
         ? `між`
         : fractureLowerTeethInLine2 === "through"
-        ? `через`
-        : ``
+          ? `через`
+          : ``,
     );
     setFractureTooth2bText(fractureLowerTeethInLine2 === "between" ? `та` : ``);
   }, [fractureLowerTeethInLine2]);
-   useEffect(() => setPlanned(plannedChecker(disease)), [disease])
+  useEffect(() => setPlanned(plannedChecker(disease)), [disease]);
   return (
     <div className="form">
       {showAddPatients && (
@@ -2373,5 +2371,5 @@ export const PatientForm = ({ onAdd, params }) => {
 };
 
 PatientForm.propTypes = {
-  onAdd: T.func.isRequired
+  onAdd: T.func.isRequired,
 };

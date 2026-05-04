@@ -12,23 +12,53 @@ import signKuchmiy from "./images/signetKuchmiy.jpg";
 import signPikh from "./images/signetPikh.jpg";
 
 export const Extract = ({ current, params, onEditAdd }) => {
-  const {_id, doctor, drugs, toothFormulaPost, toothFormula, bloodTest, analyseHiddenFields,
-    extractDataSend, cardNumber, birthDate, residence, reviewDate, dischargeDate,fullAdress,
-    complaintsContent, anamnesisMorbiContent, statusLocalisContent, finalDiagnosis, diagnosis,
-    operationDate, operationFree, operationName, secondOperation, anestesiaTypeModified,
-    recommendations, disease, wasViolation, glucose, enterobioz, urineTest, planned,
-    bloodGroup, dung, rezusFactor, otherExaminations, histologyConclusion, histologyNumber
+  const {
+    _id,
+    doctor,
+    drugs,
+    toothFormulaPost,
+    toothFormula,
+    bloodTest,
+    analyseHiddenFields,
+    extractDataSend,
+    cardNumber,
+    birthDate,
+    residence,
+    reviewDate,
+    dischargeDate,
+    fullAdress,
+    complaintsContent,
+    anamnesisMorbiContent,
+    statusLocalisContent,
+    finalDiagnosis,
+    diagnosis,
+    operationDate,
+    operationFree,
+    operationName,
+    secondOperation,
+    anestesiaTypeModified,
+    recommendations,
+    disease,
+    wasViolation,
+    glucose,
+    enterobioz,
+    urineTest,
+    planned,
+    bloodGroup,
+    dung,
+    rezusFactor,
+    otherExaminations,
+    histologyConclusion,
+    histologyNumber,
   } = current;
   const showSignet =
-    doctor === "В.Я.Кучмій" || doctor === "І.І.Піх"
-      ? true
-      : false;
+    doctor === "В.Я.Кучмій" || doctor === "І.І.Піх" ? true : false;
   const urlSign =
     doctor === "В.Я.Кучмій"
       ? signKuchmiy
       : doctor === "І.І.Піх"
-      ? signPikh
-      : "";
+        ? signPikh
+        : "";
   const filteredDrugs = drugs.filter((drug) => drug !== "");
   const formula = toothFormulaPost || toothFormula;
   const tLength = formula ? formula.length / 2 : 1;
@@ -53,7 +83,6 @@ export const Extract = ({ current, params, onEditAdd }) => {
 
   useEffect(() => {
     setHeight(extractRef.current.getBoundingClientRect().height);
-    console.log(extractRef.current.getBoundingClientRect().height);
   }, []);
   return (
     <div
@@ -62,8 +91,7 @@ export const Extract = ({ current, params, onEditAdd }) => {
       style={{
         fontSize:
           (height > 1100 &&
-            (doctor === "В.Я.Кучмій" ||
-              doctor === "І.І.Піх")) ||
+            (doctor === "В.Я.Кучмій" || doctor === "І.І.Піх")) ||
           height > 1200
             ? "15px"
             : "18px",
@@ -122,10 +150,13 @@ export const Extract = ({ current, params, onEditAdd }) => {
             header=""
             content={`${params.treatmentLocation} з ${reviewDate} по ${dischargeDate}.`}
           />
-          <Block header="Скарги:" content={complaintsContent}
+          <Block
+            header="Скарги:"
+            content={complaintsContent}
             onEditAdd={onEditAdd}
             patientId={_id}
-            editType="complaintsContent" />
+            editType="complaintsContent"
+          />
           <Block
             header="Анамнез захворювання:"
             content={anamnesisMorbiContent}
@@ -161,9 +192,7 @@ export const Extract = ({ current, params, onEditAdd }) => {
               <SimpleBlock
                 header=""
                 content={
-                  `${secondOperation}` === undefined
-                    ? null
-                    : secondOperation
+                  `${secondOperation}` === undefined ? null : secondOperation
                 }
               />
               <Block
@@ -176,9 +205,15 @@ export const Extract = ({ current, params, onEditAdd }) => {
             </>
           )}
           {filteredDrugs.length === 0 ? (
-            <SimpleBlock header="Медикаментозне лікування відсутнє." content="" />
+            <SimpleBlock
+              header="Медикаментозне лікування відсутнє."
+              content=""
+            />
           ) : (
-            <BlockList header="Медикаментозне лікування:" content={filteredDrugs} />
+            <BlockList
+              header="Медикаментозне лікування:"
+              content={filteredDrugs}
+            />
           )}
           <SimpleBlock
             header=""
@@ -188,10 +223,13 @@ export const Extract = ({ current, params, onEditAdd }) => {
                 : "Дитина виписана в задовільному загальному стані. "
             } Виписка видана батькам на руки. В контакті з інфекційними хворими не перебувала.`}
           />
-          <Block header="Рекомендації:" content={recommendations}
-           onEditAdd={onEditAdd}
-              patientId={_id}
-              editType="recommendations"/>
+          <Block
+            header="Рекомендації:"
+            content={recommendations}
+            onEditAdd={onEditAdd}
+            patientId={_id}
+            editType="recommendations"
+          />
 
           <div className="flexi headers">
             <SimpleBlock header="ДАНІ ОБСТЕЖЕНЬ" content="" />
@@ -252,19 +290,25 @@ export const Extract = ({ current, params, onEditAdd }) => {
               <span id="content">{rezusFactor}</span>
             </div>
           )}
-           {otherExaminations ? (
-                       <Block header="Інші обстеження:" content={otherExaminations}
-                    onEditAdd={onEditAdd}
-                      patientId={_id}
-                      editType="otherExaminations" />
-                    ) : null}
-          
-                  {histologyConclusion ? 
-                         <Block header={`Висновок гістологічного дослідження №${histologyNumber}`} content={histologyConclusion}
-                      onEditAdd={onEditAdd}
-                      patientId={_id}
-                      editType="histologyConclusion" />
-                    : null}
+          {otherExaminations ? (
+            <Block
+              header="Інші обстеження:"
+              content={otherExaminations}
+              onEditAdd={onEditAdd}
+              patientId={_id}
+              editType="otherExaminations"
+            />
+          ) : null}
+
+          {histologyConclusion ? (
+            <Block
+              header={`Висновок гістологічного дослідження №${histologyNumber}`}
+              content={histologyConclusion}
+              onEditAdd={onEditAdd}
+              patientId={_id}
+              editType="histologyConclusion"
+            />
+          ) : null}
           <div className="flexEnd headers">
             {!showSignet && (
               <div className="lastLine">

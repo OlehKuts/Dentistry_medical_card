@@ -20,6 +20,8 @@ import { setOneTrueInArray } from "./utils/utils";
 import useCopyToClipboard from "./components/hooks/useCopyToClipboard";
 import { isJsonString, exceedReminder } from "./utils/utils";
 import { NewDiary } from "./components/NewDiary";
+import { Routes, Route, useNavigate } from "react-router";
+import { NotFound } from "./components/NotFound";
 
 import {
   patientsReducer,
@@ -28,42 +30,23 @@ import {
 } from "./patientsReducer";
 import { UsefulLinks } from "./components/UsefulLinks";
 import { Clock } from "./components/Clock";
+import { AppNavbar } from "./components/AppNavbar";
 
 export const Main = () => {
   const [limit, setLimit] = useState({ low: 0, high: 11 });
-  const [showMenuPart, setShowMenuPart] = useState([
-    true,
-    false,
-    false,
-    false,
-    false,
-  ]);
+  const navigate = useNavigate();
   const basicParams = JSON.parse(localStorage.getItem("basicParams"));
   const [currentParams, setCurrentParams] = useState(
-    basicParams || initialParams
+    basicParams || initialParams,
   );
   const changeParams = (newParams) => {
     localStorage.setItem("basicParams", JSON.stringify(newParams));
     setCurrentParams(newParams);
     alert("Внесені зміни застосовано!");
-    setShowMenuPart(setOneTrueInArray(showMenuPart, 0));
+    navigate("/");
   };
   const [modalActive, setModalActive] = useState(false);
-  const formClick = () => {
-    setShowMenuPart(setOneTrueInArray(showMenuPart, 0));
-  };
-  const listClick = () => {
-    setShowMenuPart(setOneTrueInArray(showMenuPart, 1));
-  };
-  const mainClick = () => {
-    setShowMenuPart(setOneTrueInArray(showMenuPart, 2));
-  };
-  const paramsClick = () => {
-    setShowMenuPart(setOneTrueInArray(showMenuPart, 3));
-  };
-  const statsClick = () => {
-    setShowMenuPart(setOneTrueInArray(showMenuPart, 4));
-  };
+
   const [patients, dispatch] = useReducer(patientsReducer, initialState());
   // import-export
   const [showImport, setShowImport] = useState(false);
@@ -79,12 +62,12 @@ export const Main = () => {
       payload: { importedPatients: JSON.parse(importedData) },
     });
     alert("Дані успішно імпортовано");
-    setShowImport(false)
+    setShowImport(false);
   };
   const exportData = () => {
     copiedToClipboard(JSON.stringify(patients));
     alert(
-      "Дані про медичні карти пацієнтів скопійовано в буфер обміну. Збережіть їх в окремому текстовому документі."
+      "Дані про медичні карти пацієнтів скопійовано в буфер обміну. Збережіть їх в окремому текстовому документі.",
     );
   };
 
@@ -225,7 +208,7 @@ export const Main = () => {
     overCompleteXRay,
     overCompleteAmount,
     operationFree,
-    planned
+    planned,
   ) => {
     dispatch({
       type: PATIENTS_ACTIONS.ADD,
@@ -365,9 +348,8 @@ export const Main = () => {
       overCompleteXRay,
       overCompleteAmount,
       operationFree,
-      planned
+      planned,
     });
-    listClick();
   };
   const onRemove = (_id) => dispatch({ type: PATIENTS_ACTIONS.REMOVE, _id });
   const onDischargeAdd = (
@@ -399,7 +381,7 @@ export const Main = () => {
     uOther,
     wasViolation,
     finalDiagnosis,
-    analyseHiddenFields
+    analyseHiddenFields,
   ) => {
     return dispatch({
       type: PATIENTS_ACTIONS.DISCHARGEADD,
@@ -452,7 +434,7 @@ export const Main = () => {
     anestesiaType,
     operationDataSend,
     changedList,
-    finalDiagnosis
+    finalDiagnosis,
   ) => {
     dispatch({
       type: PATIENTS_ACTIONS.OPERATIONADD,
@@ -473,7 +455,7 @@ export const Main = () => {
       anestesiaType,
       operationDataSend,
       changedList,
-      finalDiagnosis
+      finalDiagnosis,
     });
   };
   const pagesArray = numArrayCreator(1, Math.ceil(patients.length / 12));
@@ -482,9 +464,9 @@ export const Main = () => {
     const patientsStringified = JSON.stringify(patients);
     localStorage.setItem("patients", patientsStringified);
   }, [patients]);
- useEffect(() => {
-exceedReminder(patients.length);
-}, [patients]);
+  useEffect(() => {
+    exceedReminder(patients.length);
+  }, [patients]);
   const [cur, setCur] = useState(patients[0]);
 
   const inputRef = useRef("");
@@ -493,7 +475,6 @@ exceedReminder(patients.length);
     let currentArray = [];
     currentArray = patients.filter((patient) => patient._id === id);
     setCur(currentArray[0]);
-    mainClick();
   };
 
   const onExtractAdd = (
@@ -501,7 +482,7 @@ exceedReminder(patients.length);
     birthDate,
     residence,
     histologyNumber,
-    histologyConclusion
+    histologyConclusion,
   ) => {
     return dispatch({
       type: PATIENTS_ACTIONS.EXTRACTADD,
@@ -545,7 +526,7 @@ exceedReminder(patients.length);
   const getActivity = (members, month, year) => {
     const filteredByDate = patients.filter(
       (item) =>
-        Number(item.startYear) === year && Number(item.startMonth) === month
+        Number(item.startYear) === year && Number(item.startMonth) === month,
     );
     const membersModified = members.map((item) => {
       return { name: item.name, amount: 0 };
@@ -581,90 +562,28 @@ exceedReminder(patients.length);
     setRequestMonth(e.target.value);
   };
   const [requestYear, setRequestYear] = useState(
-    Number(initDate.getFullYear())
+    Number(initDate.getFullYear()),
   );
   const onRequestYearChange = (e) => {
     setRequestYear(e.target.value);
   };
   const [statsDoctors, setStatsDoctors] = useState(
-    getActivity(cutDoctors, requestMonth, requestYear)
+    getActivity(cutDoctors, requestMonth, requestYear),
   );
   const onStatsSubmit = (e) => {
     e.preventDefault();
     setStatsDoctors(
-      getActivity(cutDoctors, Number(requestMonth), Number(requestYear))
+      getActivity(cutDoctors, Number(requestMonth), Number(requestYear)),
     );
   };
- console.log(cur.operationDataSend, cur.planned)
   return (
     <>
-      <div className="navigation">
-        <ul>
-          <li
-            onClick={formClick}
-            className={`list ${showMenuPart[0] ? "activeNavbarLi" : ""}`}
-          >
-            <span title="Новий пацієнт">
-              <span className="icon">
-                <ion-icon name="person-add-outline"></ion-icon>
-              </span>
-              <span className="navbarText">Новий</span>
-            </span>
-          </li>
-          <li
-            onClick={listClick}
-            className={`list ${showMenuPart[1] ? "activeNavbarLi" : ""}`}
-          >
-            <span title="Список пацієнтів">
-              <span className="icon">
-                <ion-icon name="list-circle-outline"></ion-icon>
-              </span>
-              <span className="navbarText">Список</span>
-            </span>
-          </li>
-          <li
-            onClick={mainClick}
-            className={`list ${showMenuPart[2] ? "activeNavbarLi" : ""}`}
-          >
-            <span title={fullNameCutter(cur.name)}>
-              <span className="icon">
-                <ion-icon name="person-circle-outline"></ion-icon>
-              </span>
-              <span className="navbarText">{fullNameCutter(cur.name)}</span>
-            </span>
-          </li>
-          <li
-            onClick={paramsClick}
-            className={`list ${showMenuPart[3] ? "activeNavbarLi" : ""}`}
-          >
-            <span title="Налаштування">
-              <span className="icon">
-                <ion-icon name="settings-outline"></ion-icon>
-              </span>
-              <span className="navbarText">Налаштування</span>
-            </span>
-          </li>
-          <li
-            onClick={statsClick}
-            className={`list ${showMenuPart[4] ? "activeNavbarLi" : ""}`}
-          >
-            <span title="Статистика">
-              <span className="icon">
-                <ion-icon
-                  name="stats-chart-outline"
-                  // title="Changed title"
-                ></ion-icon>
-              </span>
-              <span className="navbarText">Статистика</span>
-            </span>
-          </li>
-          <div className="indicator"></div>
-        </ul>
-      </div>
-
+      <AppNavbar currentPatientName={cur?.name} />
       <div className="app">
-        {showMenuPart[0] && (
-          <>
+        <Routes>
+          <Route
+            path="/"
+            element={
               <>
                 <div>
                   <button
@@ -714,168 +633,206 @@ exceedReminder(patients.length);
                 ) : null}
 
                 <Clock />
+                <MyModal active={modalActive} setActive={setModalActive}>
+                  <PatientForm {...{ onAdd }} params={currentParams} />
+                </MyModal>
               </>
-            <MyModal active={modalActive} setActive={setModalActive}>
-              <PatientForm {...{ onAdd }} params={currentParams} />
-            </MyModal>
-          </>
-        )}
-        {showMenuPart[1] && (
-          <>
-            {" "}
-            <div className="flexi" id="sortBtnLines">
-              <input
-                ref={inputRef}
-                className="longInputs"
-                value={request}
-                onChange={onRequestChange}
-                placeholder="Введіть ім'я чи прізвище пацієнта..."
-              />
-            </div>
-            <div id="patientList">
-              {filteredPatients.map((patient, idx) => (
-                <PatientItem
-                  idx={idx}
-                  limit={limit}
-                  key={patient._id}
-                  {...{ patient }}
-                  params={currentParams}
-                  onRemove={onRemove}
-                  onSetCurrent={onSetCurrent}
-                  onDischargeAdd={onDischargeAdd}
-                  onExtractAdd={onExtractAdd}
-                  onOperationAdd={onOperationAdd}
-                  onEditAdd={onEditAdd}
-                  onEditDay={editDay}
-                  showEditDiaryForm={showEditDiaryForm}
-                  onShowEditDiaryForm={onShowEditDiaryForm}
-                  onCancelEditDiary={onCancelEditDiary}
-                  backgroundColor={
-                    patient.disease === "periodontit"
-                      ? "azure"
-                      : patient.disease === "periostit"
-                      ? "lavender"
-                      : patient.disease === "skinWound"
-                      ? "beige"
-                      : patient.disease === "tongueBridle"
-                      ? "palegoldenrod"
-                      : patient.disease === "lipBridle"
-                      ? "seaShell"
-                      : patient.disease === "caries"
-                      ? "#CFF0EC"
-                      : patient.disease === "abscess"
-                      ? "mistyRose"
-                      : patient.disease === "cyst"
-                      ? "linen"
-                      : patient.disease === "retention"
-                      ? "gainsboro"
-                      : patient.disease === "neoplasm"
-                      ? "#D8E1C7"
-                      : patient.disease === "fractureLowerJaw"
-                      ? "#E1C6C2"
-                      : patient.disease === "dislocationTooth"
-                      ? "#F7DCFF"
-                      : patient.disease === "overComplete"
-                      ? "#D7FFE4"
-                      : "white"
-                  }
-                  border={
-                    cur !== undefined && cur._id === patient._id
-                      ? "2px solid olive"
-                      : ""
-                  }
-                />
-              ))}
-            </div>
-            <div className="pages">
-              {pagesArray.map((item, idx) => (
-                <button
-                  className="pageButton"
-                  id={idx === limit.low / 12 ? "activePage" : ""}
-                  key={idx}
-                  onClick={() => {
-                    setLimit({
-                      low: (item - 1) * 12,
-                      high: (item - 1) * 12 + 11,
-                    });
-                  }}
-                >
-                  {item}
-                </button>
-              ))}
-            </div>
-          </>
-        )}
-        {showMenuPart[2] && cur !== undefined && (
-          <>
-            {cur !== undefined && <PatientCard current={cur} />}
-            <Review current={cur} params={currentParams} onEditAdd={onEditAdd} />
-            <Epicrisis current={cur} params={currentParams} onEditAdd={onEditAdd}/>
-            <Extract current={cur} params={currentParams} onEditAdd={onEditAdd}/>
-            <div id="operationRegister">
-              <OperationRegister current={cur} />
-            </div>
-            {cur !== undefined &&
-              !cur.usedNewDiary &&
-              cur.diaryList.map((item, idx) => (
-                <Diary
-                  key={idx}
-                  current={item}
-                  lastIndex={idx === cur.diaryList.length - 1 ? true : false}
-                  penultimateIndex={
-                    idx === cur.diaryList.length - 2 ? true : false
-                  }
-                  patient={cur}
-                  params={currentParams}
-                />
-              ))}
-            {cur.usedNewDiary ? (
+            }
+          />
+          <Route
+            path="/patientList"
+            element={
               <>
-                {cur.diaryList.map((item) => (
-                  <NewDiary key={item.id} patient={cur} currentDay={item} params={currentParams} />
-                ))}{" "}
+                <div className="flexi" id="sortBtnLines">
+                  <input
+                    ref={inputRef}
+                    className="longInputs"
+                    value={request}
+                    onChange={onRequestChange}
+                    placeholder="Введіть ім'я чи прізвище пацієнта..."
+                  />
+                </div>
+                <div id="patientList">
+                  {filteredPatients.map((patient, idx) => (
+                    <PatientItem
+                      patientsLength={patients?.length}
+                      idx={idx}
+                      limit={limit}
+                      key={patient._id}
+                      {...{ patient }}
+                      params={currentParams}
+                      onRemove={onRemove}
+                      onSetCurrent={onSetCurrent}
+                      onDischargeAdd={onDischargeAdd}
+                      onExtractAdd={onExtractAdd}
+                      onOperationAdd={onOperationAdd}
+                      onEditAdd={onEditAdd}
+                      onEditDay={editDay}
+                      showEditDiaryForm={showEditDiaryForm}
+                      onShowEditDiaryForm={onShowEditDiaryForm}
+                      onCancelEditDiary={onCancelEditDiary}
+                      backgroundColor={
+                        patient.disease === "periodontit"
+                          ? "azure"
+                          : patient.disease === "periostit"
+                            ? "lavender"
+                            : patient.disease === "skinWound"
+                              ? "beige"
+                              : patient.disease === "tongueBridle"
+                                ? "palegoldenrod"
+                                : patient.disease === "lipBridle"
+                                  ? "seaShell"
+                                  : patient.disease === "caries"
+                                    ? "#CFF0EC"
+                                    : patient.disease === "abscess"
+                                      ? "mistyRose"
+                                      : patient.disease === "cyst"
+                                        ? "linen"
+                                        : patient.disease === "retention"
+                                          ? "gainsboro"
+                                          : patient.disease === "neoplasm"
+                                            ? "#D8E1C7"
+                                            : patient.disease ===
+                                                "fractureLowerJaw"
+                                              ? "#E1C6C2"
+                                              : patient.disease ===
+                                                  "dislocationTooth"
+                                                ? "#F7DCFF"
+                                                : patient.disease ===
+                                                    "overComplete"
+                                                  ? "#D7FFE4"
+                                                  : "white"
+                      }
+                      border={
+                        cur !== undefined && cur._id === patient._id
+                          ? "2px solid olive"
+                          : ""
+                      }
+                    />
+                  ))}
+                </div>
+                <div className="pages">
+                  {pagesArray.map((item, idx) => (
+                    <button
+                      className="pageButton"
+                      id={idx === limit.low / 12 ? "activePage" : ""}
+                      key={idx}
+                      onClick={() => {
+                        setLimit({
+                          low: (item - 1) * 12,
+                          high: (item - 1) * 12 + 11,
+                        });
+                      }}
+                    >
+                      {item}
+                    </button>
+                  ))}
+                </div>
               </>
-            ) : null}
-          </>
-        )}
-
-        {showMenuPart[3] && (
-          <ParamsForm currentParams={currentParams} alter={changeParams} />
-        )}
-
-        {showMenuPart[4] && (
-          <div className="statsForm">
-            <form onSubmit={onStatsSubmit}>
-              <h5>Оберіть місяць та рік</h5>
-              <div className="statsInputs">
-                <input
-                  type="number"
-                  min="1"
-                  max="12"
-                  value={requestMonth}
-                  onChange={onRequestMonthChange}
+            }
+          />
+          <Route
+            path="/patientCard"
+            element={
+              <>
+                <PatientCard current={cur} />
+                <Review
+                  current={cur}
+                  params={currentParams}
+                  onEditAdd={onEditAdd}
                 />
-                <input
-                  type="number"
-                  min="2021"
-                  max="2050"
-                  value={requestYear}
-                  onChange={onRequestYearChange}
+                <Epicrisis
+                  current={cur}
+                  params={currentParams}
+                  onEditAdd={onEditAdd}
                 />
-              </div>
-              <div className="sendLine">
-                <button className="send btnEffect" type="submit">
-                  Показати
-                </button>
-              </div>
-            </form>
-            <StatsTable
-              members={statsDoctors}
-              currentMonth={requestMonth}
-              currentYear={requestYear}
-            />
-          </div>
-        )}
+                <Extract
+                  current={cur}
+                  params={currentParams}
+                  onEditAdd={onEditAdd}
+                />
+
+                <div id="operationRegister">
+                  <OperationRegister current={cur} />
+                </div>
+                {cur !== undefined && !cur.usedNewDiary
+                  ? cur.diaryList.map((item, idx) => (
+                      <Diary
+                        key={idx}
+                        current={item}
+                        lastIndex={
+                          idx === cur.diaryList.length - 1 ? true : false
+                        }
+                        penultimateIndex={
+                          idx === cur.diaryList.length - 2 ? true : false
+                        }
+                        patient={cur}
+                        params={currentParams}
+                      />
+                    ))
+                  : null}
+                {cur.usedNewDiary ? (
+                  <>
+                    {cur.diaryList.map((item) => (
+                      <NewDiary
+                        key={item.id}
+                        patient={cur}
+                        currentDay={item}
+                        params={currentParams}
+                      />
+                    ))}{" "}
+                  </>
+                ) : null}
+              </>
+            }
+          />
+
+          <Route
+            path="/settings"
+            element={
+              <ParamsForm currentParams={currentParams} alter={changeParams} />
+            }
+          />
+          <Route
+            path="/stats"
+            element={
+              <>
+                <div className="statsForm">
+                  <form onSubmit={onStatsSubmit}>
+                    <h5>Оберіть місяць та рік</h5>
+                    <div className="statsInputs">
+                      <input
+                        type="number"
+                        min="1"
+                        max="12"
+                        value={requestMonth}
+                        onChange={onRequestMonthChange}
+                      />
+                      <input
+                        type="number"
+                        min="2021"
+                        max="2050"
+                        value={requestYear}
+                        onChange={onRequestYearChange}
+                      />
+                    </div>
+                    <div className="sendLine">
+                      <button className="send btnEffect" type="submit">
+                        Показати
+                      </button>
+                    </div>
+                  </form>
+                  <StatsTable
+                    members={statsDoctors}
+                    currentMonth={requestMonth}
+                    currentYear={requestYear}
+                  />
+                </div>
+              </>
+            }
+          />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
       </div>
     </>
   );

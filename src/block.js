@@ -6,6 +6,7 @@ export const Block = ({
   header,
   content = "",
   size = "18px",
+  contentSize = "18px",
   patientId,
   editType,
   onEditAdd,
@@ -39,7 +40,10 @@ export const Block = ({
       </Text>
       {""}
       {!showTextarea ? (
-        <span className="content"> {content} </span>
+        <span className="content" style={{ fontSize: contentSize }}>
+          {" "}
+          {content}{" "}
+        </span>
       ) : (
         <textarea
           autoFocus

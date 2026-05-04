@@ -33,6 +33,7 @@ import { statusMounter } from "./functions/changedListMounter";
 import { ToothItem } from "./components/ToothItem";
 import { MacInput } from "./UI/input/MacInput";
 import { MacButton } from "./UI/button/MacButton";
+import { useNavigate } from "react-router";
 export const PatientItem = ({
   idx,
   limit,
@@ -48,6 +49,7 @@ export const PatientItem = ({
   onShowEditDiaryForm,
   onCancelEditDiary,
   onRemove,
+  patientsLength,
   ...props
 }) => {
   const year = new Date().getFullYear();
@@ -70,14 +72,40 @@ export const PatientItem = ({
   const onEditCancel = () => {
     setShowEditForm(false);
   };
-  const { diaryList, epicrisisDataSend, extractDataSend, usedNewDiary, planned,
-    disease, _id, cardNumber, reviewDate, doctor, complaintsContent, anamnesisMorbiContent,
-    anamnesisVitaeContent, statusPraesensContent, statusLocalisContent, diagnosis, operationName,
-    operationContent, drugName1, drugName2, drugName3, drugName4, drugName5,
-    appointment, appointment2, appointment3, recommendations, shortStatusContent, 
-    secondOperation, otherExaminations, examinations, operationDataSend
-   } =
-    patient;
+  const {
+    diaryList,
+    epicrisisDataSend,
+    extractDataSend,
+    usedNewDiary,
+    planned,
+    disease,
+    _id,
+    cardNumber,
+    reviewDate,
+    doctor,
+    complaintsContent,
+    anamnesisMorbiContent,
+    anamnesisVitaeContent,
+    statusPraesensContent,
+    statusLocalisContent,
+    diagnosis,
+    operationName,
+    operationContent,
+    drugName1,
+    drugName2,
+    drugName3,
+    drugName4,
+    drugName5,
+    appointment,
+    appointment2,
+    appointment3,
+    recommendations,
+    shortStatusContent,
+    secondOperation,
+    otherExaminations,
+    examinations,
+    operationDataSend,
+  } = patient;
   const [currentDay, setCurrentDay] = useState("");
   const [currentId, setCurrentId] = useState("");
   const allowEditDiary = (dayId) => {
@@ -91,6 +119,7 @@ export const PatientItem = ({
   const [lastMonth, setLastMonth] = useState(1 + Number(initDate.getMonth()));
   const [lastYear, setLastYear] = useState(year);
   const [showDischargeForm, setShowDischargeForm] = useState(false);
+  const navigate = useNavigate();
   const onShowDischargeForm = () => {
     if (!(operationDataSend || !planned)) {
       alert("Спочатку введіть дані про планову операцію!");
@@ -129,7 +158,6 @@ export const PatientItem = ({
     setShowEditForm(true);
     setShowFirstLineEditForm(false);
   };
-
 
   const onShowAllEditForm = () => {
     setShowAllEditForm(!showAllEditForm);
@@ -231,7 +259,7 @@ export const PatientItem = ({
       uOther,
       wasViolation,
       finalDiagnosis,
-      analyseHiddenFields
+      analyseHiddenFields,
     );
     setShowDischargeForm(false);
   };
@@ -267,7 +295,7 @@ export const PatientItem = ({
       birthDate,
       residence,
       histologyNumber,
-      histologyConclusion
+      histologyConclusion,
     );
     setShowExtractForm(false);
   };
@@ -292,8 +320,8 @@ export const PatientItem = ({
       sutureSize,
       anestesiaType,
       operationDataSend,
-      changedList, 
-      finalDiagnosis
+      changedList,
+      finalDiagnosis,
     );
     setShowOperationForm(false);
   };
@@ -309,7 +337,7 @@ export const PatientItem = ({
   const [anesthetist, setAnesthetist] = useState(anesthetistList[0].value);
   const [sutureType, setSutureType] = useState(sutureTypeList[0].value);
   const [sutureMaterial, setSutureMaterial] = useState(
-    sutureMaterialList[0].value
+    sutureMaterialList[0].value,
   );
   const [sutureSize, setSutureSize] = useState(sutureSizeList[0].value);
   const [restMaterial, setRestMaterial] = useState(restMaterialList[0].value);
@@ -402,12 +430,12 @@ export const PatientItem = ({
       case "otherExaminations":
         result = otherExaminations;
         break;
-        case "examinations":
-          result = examinations;
-          break;
-          case "anestesiaTypeModified":
-          result = patient.anestesiaTypeModified;
-          break;
+      case "examinations":
+        result = examinations;
+        break;
+      case "anestesiaTypeModified":
+        result = patient.anestesiaTypeModified;
+        break;
       default:
         throw new Error();
     }
@@ -454,9 +482,7 @@ export const PatientItem = ({
             onClick={onShowOperationForm}
             style={{
               backgroundColor:
-                operationDataSend || !planned
-                  ? "olive"
-                  : "#6c7592",
+                operationDataSend || !planned ? "olive" : "#6c7592",
             }}
           >
             <Icon name="operation" />
@@ -480,7 +506,10 @@ export const PatientItem = ({
           <button
             title="Дивитись карту пацієнта"
             id="viewBtn"
-            onClick={() => onSetCurrent(_id)}
+            onClick={() => {
+              onSetCurrent(_id);
+              navigate("/patientCard");
+            }}
           >
             <Icon name="eye" />
           </button>
@@ -503,7 +532,10 @@ export const PatientItem = ({
           </button>
           <button
             title="Видалити пацієнта"
-            onClick={() => onRemove(_id)}
+            onClick={() => {
+              if (patientsLength < 2) return;
+              onRemove(_id);
+            }}
             id="removeBtn"
           >
             {" "}
@@ -1307,13 +1339,13 @@ export const PatientItem = ({
               </div>
             )}
             <p className="flexi">
-                <input
+              <input
                 className="extraLongInputs"
                 value={finalDiagnosis}
                 onChange={(e) => setFinalDiagnosis(e.target.value)}
                 placeholder="заключний діагноз..."
               />
-                </p>
+            </p>
             <p className="sendLine">
               <button className="send btnEffect" type="submit">
                 Відправити
