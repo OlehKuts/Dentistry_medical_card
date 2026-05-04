@@ -773,7 +773,7 @@ export const Main = () => {
                   : null}
                 {cur.usedNewDiary ? (
                   <>
-                    {cur.diaryList.map((item) => (
+                    {cur?.diaryList.map((item) => (
                       <NewDiary
                         key={item.id}
                         patient={cur}
