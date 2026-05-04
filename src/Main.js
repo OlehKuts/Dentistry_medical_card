@@ -468,7 +468,9 @@ export const Main = () => {
   useEffect(() => {
     exceedReminder(patients.length);
   }, [patients]);
-  const [cur, setCur] = useState(patients[0]);
+  const [cur, setCur] = useState(() =>
+    patients.length > 1 ? patients[0] : patientTemplate,
+  );
 
   const inputRef = useRef("");
 
@@ -577,12 +579,12 @@ export const Main = () => {
       getActivity(cutDoctors, Number(requestMonth), Number(requestYear)),
     );
   };
-  useEffect(() => {
-    if (patients.length < 2) {
-      setCur(patients[0] || patientTemplate);
-    }
-  }, []);
-  console.log(cur.diaryList);
+  // useEffect(() => {
+  //   if (patients.length < 2) {
+  //     setCur(patients[0] || patientTemplate);
+  //   }
+  // }, []);
+  console.log(cur);
   return (
     <>
       <AppNavbar currentPatientName={cur?.name} />
