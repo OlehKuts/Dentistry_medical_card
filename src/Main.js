@@ -31,6 +31,7 @@ import {
 import { UsefulLinks } from "./components/UsefulLinks";
 import { Clock } from "./components/Clock";
 import { AppNavbar } from "./components/AppNavbar";
+import { patientTemplate } from "./templates";
 
 export const Main = () => {
   const [limit, setLimit] = useState({ low: 0, high: 11 });
@@ -576,6 +577,11 @@ export const Main = () => {
       getActivity(cutDoctors, Number(requestMonth), Number(requestYear)),
     );
   };
+  useEffect(() => {
+    if (patients.length < 2) {
+      setCur(patients[0] || patientTemplate);
+    }
+  }, []);
   console.log(cur.diaryList);
   return (
     <>
