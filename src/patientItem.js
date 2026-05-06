@@ -678,13 +678,14 @@ export const PatientItem = ({
                 placeholder="інше..."
               />
             </p>
-            <p className="flexBetween">
+            <p className="smallLine flexCenter">
               <div className="label" id="firstLine">
                 Глюкоза
               </div>{" "}
               <input
+                id="glucoseInput"
                 type="number"
-                step="any"
+                step="0.1"
                 min="0"
                 max="200"
                 className="decimalInput"
