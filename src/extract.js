@@ -41,11 +41,9 @@ export const Extract = ({ current, params, onEditAdd }) => {
     disease,
     wasViolation,
     glucose,
-    enterobioz,
     urineTest,
     planned,
     bloodGroup,
-    dung,
     rezusFactor,
     otherExaminations,
     histologyConclusion,
@@ -264,22 +262,6 @@ export const Extract = ({ current, params, onEditAdd }) => {
           {!glucoseHidden && (
             <SimpleBlock header="Глюкоза крові:" content={`${glucose}.`} />
           )}
-          <div className="block">
-            {enterobioz !== `не визначався` && (
-              <>
-                <Text fontWeight="bold">Зішкріб на ентеробіоз:</Text>
-                {""}
-                <span id="content"> {enterobioz}. </span>
-              </>
-            )}
-            {dung !== `не визначався` && (
-              <>
-                <Text fontWeight="bold">Кал на я/г:</Text>
-                {""}
-                <span id="content"> {dung}. </span>
-              </>
-            )}
-          </div>
           {planned && bloodGroup && (
             <div className="block">
               <Text fontWeight="bold">Група крові:</Text>

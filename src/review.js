@@ -190,6 +190,8 @@ export const Review = ({ current, params, onEditAdd }) => {
                   patientId={_id}
                   header="СПІЛЬНИЙ ОГЛЯД"
                   content=""
+                  size="16px"
+                  contentSize="16px"
                 />
               </div>
               <div className="flexi headers">
@@ -198,6 +200,8 @@ export const Review = ({ current, params, onEditAdd }) => {
                   patientId={_id}
                   header={`у складі: ${params.preOperationExamination}, лікар ${doctorType} ${doctor}`}
                   content=""
+                  size="16px"
+                  contentSize="16px"
                 />
               </div>
               <div className="flexi headers">
@@ -206,6 +210,8 @@ export const Review = ({ current, params, onEditAdd }) => {
                   patientId={_id}
                   header="(ОБГРУНТУВАННЯ КЛІНІЧНОГО ДІАГНОЗУ)"
                   content=""
+                  size="16px"
+                  contentSize="16px"
                 />
               </div>
               <Block
@@ -213,6 +219,8 @@ export const Review = ({ current, params, onEditAdd }) => {
                 patientId={_id}
                 header="Зважаючи на скарги: "
                 content={`${complaintsContent.slice(0, -1)};`}
+                size="16px"
+                contentSize="16px"
               />
               <Block
                 onEditAdd={onEditAdd}
@@ -220,24 +228,26 @@ export const Review = ({ current, params, onEditAdd }) => {
                 header="дані анамнезу захворювання:"
                 editType="anamnesisMorbiContent"
                 content={anamnesisMorbiContent}
+                size="16px"
+                contentSize="16px"
               />
               <Block
                 onEditAdd={onEditAdd}
                 patientId={_id}
                 header=""
                 content={`Рекомендовано оперативне втручання.`}
+                size="16px"
+                contentSize="16px"
               />
 
               <Block
                 onEditAdd={onEditAdd}
                 patientId={_id}
                 header="Дані об'єктивного обстеження: "
-                size="14px"
-                // content={shortStatusContent}
+                size="16px"
                 content={statusLocalisContent}
                 editType="shortStatusContent"
-                contentSize="14px"
-                // style={{font}}
+                contentSize="16px"
               />
 
               {disease === "caries" && (
@@ -253,6 +263,8 @@ export const Review = ({ current, params, onEditAdd }) => {
                     />
                   </div>
                   <Block
+                    size="16px"
+                    contentSize="16px"
                     onEditAdd={onEditAdd}
                     patientId={_id}
                     header="У дитини є клінічний діагноз: "
@@ -263,6 +275,8 @@ export const Review = ({ current, params, onEditAdd }) => {
               )}
 
               <Block
+                size="16px"
+                contentSize="16px"
                 onEditAdd={onEditAdd}
                 patientId={_id}
                 header="Рекомендовано: "

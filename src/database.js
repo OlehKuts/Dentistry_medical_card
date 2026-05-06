@@ -415,22 +415,6 @@ export const uColorList = [
   "темно-рожева",
 ];
 export const uOpacityList = ["прозора", "непрозора", "слабко-мутна", "мутна"];
-export const enterobiozList = [
-  { name: "не визначався", value: "не визначався" },
-  {
-    name: "яйця гостриків не виявлено",
-    value: " яйця гостриків не виявлено",
-  },
-  { name: "яйця гостриків виявлено", value: " яйця гостриків виявлено" },
-];
-export const dungList = [
-  { name: "не визначався", value: "не визначався" },
-  {
-    name: "яйця гельмінтів не виявлено",
-    value: "яйця гельмінтів не виявлено",
-  },
-  { name: "яйця гельмінтів виявлено", value: "яйця гельмінтів виявлено" },
-];
 export const bloodGroupList = [
   { name: "група крові", value: "" },
   { name: "I(0)", value: "I(0)" },
@@ -481,7 +465,6 @@ export const editTypeList = [
   { value: "appointment2", name: "дод. призначення 2" },
   { value: "appointment3", name: "дод. призначення 3" },
   { value: "recommendations", name: "рекомендації" },
-  { value: "shortStatusContent", name: "обгрунтування діагнозу" },
   { value: "secondOperation", name: "друга операція" },
   { value: "finalDiagnosis", name: "заключний діагноз" },
   { value: "otherExaminations", name: "інші обстеження" },

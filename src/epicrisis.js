@@ -10,12 +10,39 @@ import { bloodTestExponents, urineTestExponents } from "./database";
 import { bloodTestChecker } from "./functions/bloodTestChecker";
 
 export const Epicrisis = ({ current, params, onEditAdd }) => {
-  const {_id, doctor, drugs, toothFormulaPost, toothFormula, bloodTest, analyseHiddenFields,
-    cardNumber, reviewDate, dischargeDate, epicrisisDataSend,
-    complaintsContent, anamnesisMorbiContent, statusLocalisContent, finalDiagnosis, diagnosis,
-    operationDate, operationFree, operationName, secondOperation, anestesiaTypeModified,
-    recommendations, disease, wasViolation, glucose, enterobioz, urineTest, planned,
-    bloodGroup, dung, rezusFactor, otherExaminations, histologyConclusion, histologyNumber
+  const {
+    _id,
+    doctor,
+    drugs,
+    toothFormulaPost,
+    toothFormula,
+    bloodTest,
+    analyseHiddenFields,
+    cardNumber,
+    reviewDate,
+    dischargeDate,
+    epicrisisDataSend,
+    complaintsContent,
+    anamnesisMorbiContent,
+    statusLocalisContent,
+    finalDiagnosis,
+    diagnosis,
+    operationDate,
+    operationFree,
+    operationName,
+    secondOperation,
+    anestesiaTypeModified,
+    recommendations,
+    disease,
+    wasViolation,
+    glucose,
+    urineTest,
+    planned,
+    bloodGroup,
+    rezusFactor,
+    otherExaminations,
+    histologyConclusion,
+    histologyNumber,
   } = current;
   const filteredDrugs = drugs.filter((drug) => drug !== "");
   const formula = toothFormulaPost || toothFormula;
@@ -34,7 +61,7 @@ export const Epicrisis = ({ current, params, onEditAdd }) => {
   const {
     bloodTestHidden = false,
     urineHidden = false,
-    glucoseHidden = false
+    glucoseHidden = false,
   } = analyseHiddenFields || {};
   const epicrisisRef = React.createRef();
   const [height, setHeight] = useState(0);
@@ -54,7 +81,10 @@ export const Epicrisis = ({ current, params, onEditAdd }) => {
               header={`${params.medicalCard} №:`}
               content={cardNumber}
             />
-            <SimpleBlock header={`${params.patientType}:`} content={current.name} />
+            <SimpleBlock
+              header={`${params.patientType}:`}
+              content={current.name}
+            />
           </div>
           <div className="flexi headers">
             <SimpleBlock header="ЕПІКРИЗ" content={""} size="28px" />
@@ -63,11 +93,13 @@ export const Epicrisis = ({ current, params, onEditAdd }) => {
             header=""
             content={`${params.treatmentLocation} з ${reviewDate} по ${dischargeDate}.`}
           />
-          <Block header="Скарги:" content={complaintsContent}
+          <Block
+            header="Скарги:"
+            content={complaintsContent}
             onEditAdd={onEditAdd}
             patientId={_id}
             editType="complaintsContent"
-           />
+          />
           <Block
             header="Анамнез захворювання:"
             content={anamnesisMorbiContent}
@@ -105,9 +137,7 @@ export const Epicrisis = ({ current, params, onEditAdd }) => {
               <SimpleBlock
                 header=""
                 content={
-                  `${secondOperation}` === undefined
-                    ? null
-                    : secondOperation
+                  `${secondOperation}` === undefined ? null : secondOperation
                 }
               />
               <Block
@@ -120,9 +150,15 @@ export const Epicrisis = ({ current, params, onEditAdd }) => {
             </>
           )}
           {filteredDrugs.length !== 0 ? (
-            <BlockList header="Медикаментозне лікування:" content={filteredDrugs} />
+            <BlockList
+              header="Медикаментозне лікування:"
+              content={filteredDrugs}
+            />
           ) : (
-            <SimpleBlock header="Медикаментозне лікування відсутнє." content="" />
+            <SimpleBlock
+              header="Медикаментозне лікування відсутнє."
+              content=""
+            />
           )}
 
           <SimpleBlock
@@ -133,10 +169,13 @@ export const Epicrisis = ({ current, params, onEditAdd }) => {
                 : "Дитина виписана в задовільному загальному стані."
             } Виписка видана батькам на руки. В контакті з інфекційними хворими не перебувала.`}
           />
-          <Block header="Рекомендації:" content={recommendations}
-          onEditAdd={onEditAdd}
+          <Block
+            header="Рекомендації:"
+            content={recommendations}
+            onEditAdd={onEditAdd}
             patientId={_id}
-            editType="recommendations" />
+            editType="recommendations"
+          />
 
           <div className="flexi headers">
             <SimpleBlock header="ДАНІ ОБСТЕЖЕНЬ" content="" />
@@ -171,22 +210,6 @@ export const Epicrisis = ({ current, params, onEditAdd }) => {
           {!glucoseHidden && (
             <SimpleBlock header="Глюкоза крові:" content={`${glucose}.`} />
           )}
-          <div className="block">
-            {enterobioz !== `не визначався` && (
-              <>
-                <Text fontWeight="bold">Зішкріб на ентеробіоз:</Text>
-                {""}
-                <span id="content"> {enterobioz}. </span>
-              </>
-            )}
-            {dung !== `не визначався` && (
-              <>
-                <Text fontWeight="bold">Кал на я/г:</Text>
-                {""}
-                <span id="content"> {dung}. </span>
-              </>
-            )}
-          </div>
           {planned && bloodGroup && (
             <div className="block">
               <Text fontWeight="bold">Група крові:</Text>
@@ -199,18 +222,24 @@ export const Epicrisis = ({ current, params, onEditAdd }) => {
           )}
 
           {otherExaminations ? (
-             <Block header="Інші обстеження:" content={otherExaminations}
-          onEditAdd={onEditAdd}
-            patientId={_id}
-            editType="otherExaminations" />
+            <Block
+              header="Інші обстеження:"
+              content={otherExaminations}
+              onEditAdd={onEditAdd}
+              patientId={_id}
+              editType="otherExaminations"
+            />
           ) : null}
 
-        {histologyConclusion ? 
-               <Block header={`Висновок гістологічного дослідження №${histologyNumber}`} content={histologyConclusion}
-            onEditAdd={onEditAdd}
-            patientId={_id}
-            editType="histologyConclusion" />
-          : null}
+          {histologyConclusion ? (
+            <Block
+              header={`Висновок гістологічного дослідження №${histologyNumber}`}
+              content={histologyConclusion}
+              onEditAdd={onEditAdd}
+              patientId={_id}
+              editType="histologyConclusion"
+            />
+          ) : null}
 
           <div className="flexEnd headers">
             <div className="lastLine">

@@ -9,8 +9,6 @@ import { getResidence, setOneTrueInArray } from "./utils/utils";
 import {
   uColorList,
   uOpacityList,
-  enterobiozList,
-  dungList,
   bloodGroupList,
   rezusFactorList,
   pliersList,
@@ -100,7 +98,6 @@ export const PatientItem = ({
     appointment2,
     appointment3,
     recommendations,
-    shortStatusContent,
     secondOperation,
     otherExaminations,
     examinations,
@@ -208,8 +205,6 @@ export const PatientItem = ({
   const [uEp2, setUEp2] = useState("0-1");
   const [uOther, setUOther] = useState("-");
   const [glucose, setGlucose] = useState(4.0);
-  const [enterobioz, setEnterobioz] = useState(enterobiozList[0].value);
-  const [dung, setDung] = useState(dungList[0].value);
   const [bloodGroup, setBloodGroup] = useState(bloodGroupList[0].value);
   const [rezusFactor, setRezusFactor] = useState(rezusFactorList[0].value);
   const [showHiddenFieldsLine, setShowHiddenFieldsLine] = useState(false);
@@ -252,8 +247,6 @@ export const PatientItem = ({
       uEp1,
       uEp2,
       glucose,
-      enterobioz,
-      dung,
       bloodGroup,
       rezusFactor,
       uOther,
@@ -417,9 +410,6 @@ export const PatientItem = ({
         break;
       case "recommendations":
         result = recommendations;
-        break;
-      case "shortStatusContent":
-        result = shortStatusContent;
         break;
       case "secondOperation":
         result = secondOperation;
@@ -701,23 +691,6 @@ export const PatientItem = ({
                 onChange={(e) => setGlucose(e.target.value)}
                 placeholder="Глюкоза..."
               />
-              <select
-                value={enterobioz}
-                onChange={(e) => setEnterobioz(e.target.value)}
-              >
-                {enterobiozList.map((item, idx) => (
-                  <option key={idx} value={item.value}>
-                    {item.name}
-                  </option>
-                ))}
-              </select>
-              <select value={dung} onChange={(e) => setDung(e.target.value)}>
-                {dungList.map((item, idx) => (
-                  <option key={idx} value={item.value}>
-                    {item.name}
-                  </option>
-                ))}
-              </select>
               {(disease === "tongueBridle" ||
                 disease === "caries" ||
                 disease === "lipBridle" ||
