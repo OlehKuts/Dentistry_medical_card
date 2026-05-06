@@ -1,12 +1,10 @@
 # 🦷 Dentistry Medical Card (OMS Management System)
 
-[![Live Demo](https://shields.io)](https://olehkuts.github.io/Dentistry_medical_card/)
-
 A specialized medical ERP system designed for Oral and Maxillofacial Surgery departments. This application automates the generation of complex medical documentation, reducing paperwork time for surgeons. It has been successfully deployed and used in a clinical environment for several years.
 
 ## 🚀 Live Demo
 
-Experience the application here: [https://github.io](https://olehkuts.github.io/Dentistry_medical_card/)
+**🔗 [Live Demo (GitHub Pages)](https://olehkuts.github.io/Dentistry_medical_card/)**
 
 ## 📸 Screenshots
 
