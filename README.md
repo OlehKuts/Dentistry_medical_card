@@ -1,70 +1,65 @@
-# Getting Started with Create React App
+# 🦷 Dentistry Medical Card (OMS Management System)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+[![Live Demo](https://shields.io)](https://olehkuts.github.io/Dentistry_medical_card/)
 
-## Available Scripts
+A specialized medical ERP system designed for Oral and Maxillofacial Surgery departments. This application automates the generation of complex medical documentation, reducing paperwork time for surgeons. It has been successfully deployed and used in a clinical environment for several years.
 
-In the project directory, you can run:
+## 🚀 Live Demo
 
-### `npm start`
+Experience the application here: [https://github.io](https://olehkuts.github.io/Dentistry_medical_card/)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## 📸 Screenshots
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+|            Primary Patient Form            |           Patient Management List           |
+| :----------------------------------------: | :-----------------------------------------: |
+| ![Primary Form](./assets/primary_form.png) | ![Patient List](./assets/patients_list.png) |
 
-### `npm test`
+|           Document Generation Example            |
+| :----------------------------------------------: |
+| ![Extract Example](./assets/extract_example.png) |
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## ✨ Key Features
 
-### `npm run build`
+- **Automated Document Generation:** Generates comprehensive 6-12 page inpatient medical records based on diagnostic and clinical data.
+- **Medical Logic Modules:** Specialized forms for surgical protocols, daily check-up diaries, discharge summaries, and epicrisis.
+- **Privacy & Offline-First:** Uses `LocalStorage` for data persistence, ensuring that sensitive patient data stays on the user's machine.
+- **Data Portability:** Full Import/Export functionality via JSON files for archiving yearly records or migrating data.
+- **Statistics & Analytics:** Track treatment volumes for individual doctors within the department.
+- **Print-Ready Output:** Formats documents specifically for physical printing with editing capabilities prior to output.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## 🛠 Tech Stack
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- **Frontend:** React (Functional Components)
+- **State Management:** `useReducer` with `Context API` for complex business logic.
+- **Routing:** React Router v7.
+- **Styling:** SASS, React Bootstrap.
+- **Icons:** React-bootstrap-icons.
+- **Architecture:** Extensive use of **Custom Hooks** for modular logic and LocalStorage synchronization.
+- **Utilities:** UUID for unique record tracking.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## 📁 Application Structure
 
-### `npm run eject`
+1.  **New Patient:** High-density form for initial examination, anamnesis, and objective status.
+2.  **Patient List:** Central dashboard with pagination (12 records/page) to manage clinical records.
+3.  **Medical Card:** The preview engine where generated documents are finalized and printed.
+4.  **Settings:** Configurable clinical data (clinic name, department, medical staff names).
+5.  **Statistics:** Visual data regarding treated cases per physician.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## ⚙️ Local Development
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com
+   ```
+2. **Install dependencies:**
+   ```bash
+   npm install
+   ```
+3. **Start the development server:**
+   ```bash
+   npm start
+   ```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+---
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+_Developed by [Oleh Kuts](https://github.com/OlehKuts)_
