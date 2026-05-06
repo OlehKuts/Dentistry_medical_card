@@ -86,7 +86,7 @@ export const patientTemplate = {
     "Лоратадин, сироп, по 5 мл, 1 р/д",
   ],
   protocolNumber: "1",
-  operationDate: "1.1.2021",
+  operationDate: "1.1.2025",
   operationTime: "12.00",
   pliers: "",
   elevator: "",

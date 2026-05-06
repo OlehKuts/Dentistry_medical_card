@@ -494,6 +494,7 @@ export const PatientItem = ({
             Виписка
           </button>
           <button
+            disabled={patient.name === "Новий Тест Батькович"}
             title="Дивитись карту пацієнта"
             id="viewBtn"
             onClick={() => {
