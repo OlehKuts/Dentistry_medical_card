@@ -39,7 +39,7 @@ export const operationContentCreator = (
   overCompleteTooth4,
   overCompleteAmount,
   dlTooth7,
-  dlTooth8
+  dlTooth8,
 ) => {
   const opBeginning =
     type === "neoplasm" ||
@@ -50,7 +50,9 @@ export const operationContentCreator = (
       ? "Обробка операційного поля спиртом двічі."
       : "Обробка приротової ділянки спиртом двічі, в роті - 3% розчином перекисю водню.";
   const finishing = `Гемостаз по ходу операції. Дитина переведена в палату зі задовільними показниками гемодинаміки.`;
-  const anestesiaTypeMod = `${anestesiaType} знеболення.`;
+  const localAnestesia = `Місцеве інфільтраційне знеболення препаратом "Артифрин."`;
+  const generalAnestesia = "Загальне знеболення.";
+  const anestesiaTypeMod = `${anestesiaType === "Місцеве" ? localAnestesia : generalAnestesia} `;
   const tongueUp =
     neoplasmArea === `язика`
       ? `Язик взято на лігатуру, підтягнуто догори. `
@@ -88,10 +90,10 @@ ${finishing}
       ? `Поверхня рани оброблена "Бетадином". Суха асептича пов'язка. `
       : "";
   const dlTeethList1 = [dlTooth1, dlTooth2, dlTooth3, dlTooth4].filter(
-    (t) => t !== ""
+    (t) => t !== "",
   );
   const dlTeethList2 = [dlTooth5, dlTooth6, dlTooth7, dlTooth8].filter(
-    (t) => t !== ""
+    (t) => t !== "",
   );
   const dlToothStr1 = dlTeethList1.length > 1 ? `зубів` : `зуба`;
   const dlToothStr2 = dlTeethList2.length > 1 ? `зубів` : `зуба`;
@@ -99,42 +101,42 @@ ${finishing}
   const dlToothStrAnother2 = dlTeethList2.length > 1 ? `зуби` : `зуб`;
   const dlContentCreator = (type, teethList, toothStr, toothAnotherStr) => {
     const extractionStr = `Проведено видалення ${teethList.join(
-      ", "
+      ", ",
     )} ${toothStr}.`;
     const splintingStr = ` Проведена реплантація ${teethList.join(
-      ", "
+      ", ",
     )} ${toothStr} після попередньої антисептичної обробки та пломбування кореневого каналу. 
     ${teethList.join(
-      ", "
+      ", ",
     )} ${toothAnotherStr} виставлено у звичному до травми прикусі та фіксовано й імобілізовано 
     гладкою шиною – скобою за допомогою пломбувального матеріалу до сусідніх зубів. `;
     const retainerStr = ` Проведена реплантація ${teethList.join(
-      ", "
+      ", ",
     )} ${toothStr}. 
     ${teethList.join(
-      ", "
+      ", ",
     )} ${toothAnotherStr} виставлено у звичному до травми прикусі та фіксовано обшиванням лунки матеріалом "Vicryl 3-0" та встановленням
     з піднебінного боку фронтальної групи зубів ортодонтичної дуги, яка закріплена з допомогою композитного матеріалу. `;
     const suturingStr = `Проведена акуратна репозиція ${teethList.join(
-      ", "
+      ", ",
     )} ${toothStr} в звичному до травми прикусі. Технічно накласти гладку шину – скобу неможливо. Фіксація ${toothStr} обшиванням матеріалом "Vicryl 3-0"`;
     const finalStr =
       type === `extraction`
         ? extractionStr
         : type === `splinting`
-        ? splintingStr
-        : type === `suturing`
-        ? suturingStr
-        : type === `retainer`
-        ? retainerStr
-        : ``;
+          ? splintingStr
+          : type === `suturing`
+            ? suturingStr
+            : type === `retainer`
+              ? retainerStr
+              : ``;
     return finalStr;
   };
   const dlPart1 = `${dlContentCreator(
     dlOperationType,
     dlTeethList1,
     dlToothStr1,
-    dlToothStrAnother1
+    dlToothStrAnother1,
   )} `;
   const dlPart2 =
     dlOperationType2 === ``
@@ -143,7 +145,7 @@ ${finishing}
           dlOperationType2,
           dlTeethList2,
           dlToothStr2,
-          dlToothStrAnother2
+          dlToothStrAnother2,
         )} `;
   const dlTemplate = `${anestesiaTypeMod} ${opBeginning} ${dlPart1}${dlPart2}${finishing}`;
   const newWay = `Зафіксовано гвинти в ділянці малих кутніх зубів з обох боків на нижній та верхній щелепах. Зафіксовано прикус в звичному, як до травми положенні, та імобілізовано нижню щелепу міжщелеповою гумовою тягою. `;
@@ -153,8 +155,8 @@ ${finishing}
     fractureOperationType === "по Айві"
       ? ivyWay
       : fractureOperationType === "гвинтами"
-      ? newWay
-      : vasilievWay;
+        ? newWay
+        : vasilievWay;
   const anestesiaDetails =
     anestesiaType === "Місцеве"
       ? ` Інфільтраційна анестезія фронтальних та малих кутніх зубів нижньої та верхньої щелеп розчином артикаїну 4%.`
@@ -222,23 +224,23 @@ ${finishing}
     abscessArea === "дна порожнини рота"
       ? `дугоподібної форми в субментальній ділянці`
       : abscessArea === "крило-щелепного простору"
-      ? `в підщелепній ділянці`
-      : abscessArea === "в ділянці сонного трикутника"
-      ? abscessArea
-      : abscessArea[abscessArea.length - 1] === "и"
-      ? `у ділянці ${abscessArea}`
-      : abscessArea[abscessArea.length - 1] === "ї"
-      ? `в ${abscessArea.slice(0, -2)}ій ділянці`
-      : `в ділянці ${abscessArea.slice(0, -2)}ого трикутника`;
+        ? `в підщелепній ділянці`
+        : abscessArea === "в ділянці сонного трикутника"
+          ? abscessArea
+          : abscessArea[abscessArea.length - 1] === "и"
+            ? `у ділянці ${abscessArea}`
+            : abscessArea[abscessArea.length - 1] === "ї"
+              ? `в ${abscessArea.slice(0, -2)}ій ділянці`
+              : `в ділянці ${abscessArea.slice(0, -2)}ого трикутника`;
   const paralelMark =
     abscessArea === "дна порожнини рота"
       ? `в проекції верхньої шийної складки`
       : abscessArea === "в ділянці сонного трикутника"
-      ? `паралельно до шийної складки`
-      : abscessArea[abscessArea.length - 1] === "ї" ||
-        abscessArea[abscessArea.length - 1] === "и"
-      ? `через центр абсцесу`
-      : `паралельно до нижнього краю тіла нижньої щелепи та відступивши від нього вниз на 2 см`;
+        ? `паралельно до шийної складки`
+        : abscessArea[abscessArea.length - 1] === "ї" ||
+            abscessArea[abscessArea.length - 1] === "и"
+          ? `через центр абсцесу`
+          : `паралельно до нижнього краю тіла нижньої щелепи та відступивши від нього вниз на 2 см`;
   const cutLength =
     abscessType === `фурункул` ? `довжиною 1 см` : `довжиною 2 см`;
   const cutArea = `Проведено розріз ${triangle} ${abscessSide} ${paralelMark}, ${cutLength}.`;
@@ -249,8 +251,8 @@ ${finishing}
     abscessArea === "позадувушної"
       ? `Розсічено шкіру та підшкірну жирову клітковину, поверхневу фасцію шиї, платизму.`
       : abscessArea === "дна порожнини рота"
-      ? `Розсічено шкіру та підшкірну жирову клітковину, поверхневу фасцію шиї, платизму, щелепно-під'язиковий та підборідно-під'язиковий м'яз.`
-      : `Розсічено шкіру та підшкірну жирову клітковину.`;
+        ? `Розсічено шкіру та підшкірну жирову клітковину, поверхневу фасцію шиї, платизму, щелепно-під'язиковий та підборідно-під'язиковий м'яз.`
+        : `Розсічено шкіру та підшкірну жирову клітковину.`;
   const volume =
     abscessType === "абсцес" ||
     abscessType === "лімфаденіт" ||
@@ -261,17 +263,17 @@ ${finishing}
     abscessReason === "лімфовузол"
       ? "Залишки гнійного розплавлення лімфовузла видалено ложкою Фолькмана та взято на гістологічне дослідження."
       : abscessType === "фурункул"
-      ? "Гнійно-некротичні маси видалено ложкою Фолькмана."
-      : ``;
+        ? "Гнійно-некротичні маси видалено ложкою Фолькмана."
+        : ``;
   const space =
     abscessArea === "в ділянці сонного трикутника" ||
     abscessArea === "дна порожнини рота"
       ? "Порожнину промито розчином декасану"
       : abscessArea === "субментальної"
-      ? `Субментальний простір промито розчином декасану`
-      : abscessArea === "крило-щелепного простору"
-      ? `Крило-щелепний простір промито розчином декасану`
-      : `Субмандибулярний простір промито розчином декасану`;
+        ? `Субментальний простір промито розчином декасану`
+        : abscessArea === "крило-щелепного простору"
+          ? `Крило-щелепний простір промито розчином декасану`
+          : `Субмандибулярний простір промито розчином декасану`;
   const ablution =
     abscessType === "абсцес" ||
     abscessType === "лімфаденіт" ||
@@ -302,8 +304,8 @@ ${finishing}
     abscessArea === "щелепно-язикового жолобка"
       ? abscessLingual
       : abscessArea === "твердого піднебіння"
-      ? abscessPalatinum
-      : `${anestesiaTypeMod} ${opBeginning} ${cutArea} ${cutLayers} 
+        ? abscessPalatinum
+        : `${anestesiaTypeMod} ${opBeginning} ${cutArea} ${cutLayers} 
   Тупо москітним затискачем розширено краї рани та пройдено до гнійного осередку ${wingJaw}.
   Евакуація гнійного вмісту об'ємом ${volume} мл. Гній взято на бак.посів. ${nodeExtraction}
   ${ablution} та дреновано гумовим випускником. Асептична пов'язка з гіпертонічним розчином хлориду натрію.
@@ -325,28 +327,28 @@ ${finishing}
   cariesList.length === 1
     ? (sanationCaries = `Відпрепаровано каріозну порожнину  ${cariesList[0]} зуба. Коронку ${cariesList[0]} зуба відновлено прямою реставрацією ${restMaterial}.`)
     : cariesList.length > 1
-    ? (sanationCaries = `Відпрепаровано каріозні порожнини  ${cariesList.join(
-        ", "
-      )} зубів. Коронки ${cariesList.join(
-        ", "
-      )} зубів відновлено прямими реставраціями ${restMaterial}.`)
-    : (sanationCaries = ``);
+      ? (sanationCaries = `Відпрепаровано каріозні порожнини  ${cariesList.join(
+          ", ",
+        )} зубів. Коронки ${cariesList.join(
+          ", ",
+        )} зубів відновлено прямими реставраціями ${restMaterial}.`)
+      : (sanationCaries = ``);
   pulpitList.length === 1
     ? (sanationPulpit = `Відпрепаровано каріозну порожнину  ${pulpitList[0]} зуба. Проведена екстирпація пульпи, інструментальна та медикаментозна обробка ${pulpitList[0]} зуба.`)
     : pulpitList.length > 1
-    ? (sanationPulpit = `Відпрепаровано каріозні порожнини  ${pulpitList.join(
-        ", "
-      )} зубів. Проведена екстирпація пульпи, інструментальна та медикаментозна обробка ${pulpitList.join(
-        ", "
-      )} зубів.`)
-    : (sanationPulpit = ``);
+      ? (sanationPulpit = `Відпрепаровано каріозні порожнини  ${pulpitList.join(
+          ", ",
+        )} зубів. Проведена екстирпація пульпи, інструментальна та медикаментозна обробка ${pulpitList.join(
+          ", ",
+        )} зубів.`)
+      : (sanationPulpit = ``);
   perioList.length === 1
     ? (sanationPerio = `Видалено ${perioList[0]} зуб, на верхівці кореня якого виявлені множинні дрібні гранульоми.`)
     : perioList.length > 1
-    ? (sanationPerio = `Видалено ${perioList.join(
-        ", "
-      )} зуби, на верхівках коренів яких виявлені множинні дрібні гранульоми.`)
-    : (sanationPerio = ``);
+      ? (sanationPerio = `Видалено ${perioList.join(
+          ", ",
+        )} зуби, на верхівках коренів яких виявлені множинні дрібні гранульоми.`)
+      : (sanationPerio = ``);
   let pliersAndElevators = `з допомогою ${pliers}${
     pliers && elevators ? "," : ""
   } ${elevators}`;
@@ -354,8 +356,8 @@ ${finishing}
   perioTeeth.length === 2
     ? (perioTeethContent = `Видалено ${perioTeeth} зуб, на верхівці кореня якого виявлені множинні дрібні гранульоми.`)
     : perioTeeth.length > 2
-    ? (perioTeethContent = `Видалено ${perioTeeth} зуби, на верхівках коренів яких виявлені множинні дрібні гранульоми.`)
-    : (perioTeethContent = "");
+      ? (perioTeethContent = `Видалено ${perioTeeth} зуби, на верхівках коренів яких виявлені множинні дрібні гранульоми.`)
+      : (perioTeethContent = "");
   if (type === "periostit") {
     return `${anestesiaTypeMod} ${opBeginning} Проведено розріз до кістки паралельно до перехідної складки в ділянці ${area} зубів, довжиною приблизно 2 см. Тупо москітним затискачем розширено краї рани та пройдено до гнійного осередку. Гнійний вміст об’ємом приблизно 2 мл забрано на бак.посів. Рана дренована гумовим випускником. Видалено ${tooth} зуб ${pliersAndElevators}. На верхівках коренів видаленого зуба виявлені множинні дрібні гранульоми. ${perioTeethContent} ${finishing}`;
   } else if (type === "periodontit") {
