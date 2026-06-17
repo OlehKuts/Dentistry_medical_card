@@ -34,6 +34,8 @@ export const treatmentCreator = (drugName, age, weight) => {
     return amicylCounter(weight);
   } else if (drugName === "Нурофен") {
     return nurofenCounter(age);
+  } else if (drugName === "Ібупрофен") {
+    return ibuprofenCounter(age);
   } else if (drugName === "Парацетамол") {
     return paracetamolCounter(age);
   } else if (drugName === "Неофлорум") {
@@ -89,7 +91,7 @@ const lincomycinCounter = (weight) => {
   if (kilo < 41 && kilo > 0) {
     dose = kilo / 20;
     return `Лінкоміцину гідрохлорид(30%), по ${dose.toFixed(
-      1
+      1,
     )} мл в/м'язово, 2 р/д`;
   } else {
     dose = kilo / 30;
@@ -243,6 +245,9 @@ const nurofenCounter = (age) => {
   } else if (age < 14) {
     return "Ібупрофен(200мг), таблетки, по 1 таб., 2 р./д.";
   } else return "Ібупрофен(200мг), таблетки, по 2 таб., 2 р./д.";
+};
+const ibuprofenCounter = (age) => {
+  return `Ібупрофен(200мг), таблетки, по ${age < 14 ? "1" : "2"} таб., 3 р./д.`;
 };
 const paracetamolCounter = (age) => {
   if (age < 1) {

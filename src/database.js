@@ -84,6 +84,7 @@ export const drugName1List = [
 export const drugName2List = [
   { name: "Протизапальний", value: "" },
   { name: "Нурофен", value: "Нурофен" },
+  { name: "Ібупрофен (200 мг)", value: "Ібупрофен" },
   { name: "Парацетамол", value: "Парацетамол" },
 ];
 export const drugName3List = [
